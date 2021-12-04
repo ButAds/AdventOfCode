@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Queue;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -37,6 +39,16 @@ public class BufferUtils {
             items.add(now);
         }
         return items;
+    }
+
+    public static Queue<String> getInputAsQueue(String location) throws IOException {
+        var br = getInputAsStream(location);
+        Queue<String> allItems = new LinkedList<>();
+        String line;
+        while ((line = br.readLine()) != null) {
+            allItems.add(line);
+        }
+        return allItems;
     }
 
 }
