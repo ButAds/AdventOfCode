@@ -36,7 +36,7 @@ public class PrintSolutions {
             log.info(String.format("Day [%s] Section [%s] - took [%sms] - Answer [%s]",
                 answerable.getDay(),
                 answerable.getSection(),
-                Duration.between(start, end).dividedBy(performanceLoopCount).toMillis(),
+                (Duration.between(start, end).dividedBy(performanceLoopCount).toNanos() / 1_000_000F),
                 answerable.getAnswer()));
 
         } catch (IOException e) {
