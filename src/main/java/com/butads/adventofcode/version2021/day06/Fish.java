@@ -17,12 +17,9 @@ public class Fish {
     }
 
     private static long[] calculateDays(int days, long[] start) {
-        for (int day = 1; day <= days; day++) {
+        for (int day = 0; day < days; day++) {
             long fallOver = start[0];
-            for (int i = 0; i < start.length; i++) {
-                start[i] = start[(i + 1) % start.length];
-            }
-
+            System.arraycopy(start, 1, start, 0, start.length - 1);
             start[6] += fallOver;
             start[start.length - 1] = fallOver;
         }
