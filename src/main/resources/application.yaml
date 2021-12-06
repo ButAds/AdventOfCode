@@ -1,4 +1,5 @@
 config:
-  year: 2021
+  year: -1
+  day: -1
   performance:
-    loops: 1000
+    loops: 1

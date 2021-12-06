@@ -17,16 +17,16 @@ public class Fish {
     }
 
     private static long[] calculateDays(int days, long[] start) {
-        long[] currentFish = start;
         for (int day = 1; day <= days; day++) {
-            long[] nextArray = new long[MAX_LIFESPAN + 1];
-            for (int i = 0; i < nextArray.length; i++) {
-                nextArray[i] = currentFish[(i + 1) % nextArray.length];
+            long fallOver = start[0];
+            for (int i = 0; i < start.length; i++) {
+                start[i] = start[(i + 1) % start.length];
             }
-            nextArray[6] = currentFish[7] + currentFish[0];
-            currentFish = nextArray;
-        }
-        return currentFish;
-    }
 
+            start[6] += fallOver;
+            start[start.length - 1] = fallOver;
+        }
+
+        return start;
+    }
 }

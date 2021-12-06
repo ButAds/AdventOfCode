@@ -26,6 +26,9 @@ public class PrintSolutions {
     @Value("${config.year:-1}")
     private int whatYear;
 
+    @Value("${config.day:-1}")
+    private int fromDay;
+
     private void print(Answerable answerable) {
         try {
             Instant start = Instant.now();
@@ -51,7 +54,9 @@ public class PrintSolutions {
     private void doPrint() {
         Comparator<Answerable> comparing = comparing(Answerable::getDay)
             .thenComparing(Answerable::getSection).reversed();
-        answers.stream().filter(answerable -> whatYear == -1 || whatYear == answerable.getYear())
+        answers.stream()
+            .filter(answerable -> whatYear == -1 || whatYear == answerable.getYear())
+            .filter(answerable -> answerable.getDay() >= fromDay)
             .sorted(comparing)
             .forEach(this::print);
 

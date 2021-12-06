@@ -9,6 +9,11 @@
       "name": "config.year",
       "type": "java.lang.Integer",
       "description": "What year to run. Default of -1 runs all years."
+    },
+    {
+      "name": "config.day",
+      "type": "java.lang.String",
+      "description": "From which day to run. Default of -1 runs all days. For example, 2 will run test 2,3,4.. and above."
     }
   ]
 }
