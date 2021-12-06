@@ -1,8 +1,12 @@
-package com.butads.adventofcode.version2021;
+package com.butads.adventofcode;
 
 import java.io.IOException;
 
 public interface Answerable {
+
+    default int getYear() {
+        return 2021;
+    }
 
     int getDay();
 

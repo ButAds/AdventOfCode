@@ -1,14 +1,16 @@
-package com.butads.adventofcode.version2021;
+package com.butads.adventofcode;
 
 import static java.util.Comparator.comparing;
 
 import java.io.IOException;
-import java.text.MessageFormat;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Comparator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,22 +20,30 @@ public class PrintSolutions {
 
     private final List<Answerable> answers;
 
-    public static String padLeft(int item, int n) {
-        return String.format(MessageFormat.format("%{0}s", n), item);
-    }
+    @Value("${config.performance.loops:1}")
+    private int performanceLoopCount;
+
+    @Value("${config.year:-1}")
+    private int whatYear;
 
     private void print(Answerable answerable) {
         try {
-            log.info(String.format("Day [%s]  Section [%s] - Answer [%s]",
+            Instant start = Instant.now();
+            for (int i = 0; i < performanceLoopCount; i++) {
+                answerable.getAnswer();
+            }
+            Instant end = Instant.now();
+            log.info(String.format("Day [%s] Section [%s] - took [%sms] - Answer [%s]",
                 answerable.getDay(),
                 answerable.getSection(),
+                Duration.between(start, end).dividedBy(performanceLoopCount).toMillis(),
                 answerable.getAnswer()));
+
         } catch (IOException e) {
             log.warning(String.format("Day [%s]  Section [%s] - ERROR: [%s]", answerable.getDay(),
                 answerable.getSection(),
                 e.getMessage()));
             e.printStackTrace();
-
         }
     }
 
@@ -41,7 +51,9 @@ public class PrintSolutions {
     private void doPrint() {
         Comparator<Answerable> comparing = comparing(Answerable::getDay)
             .thenComparing(Answerable::getSection).reversed();
-        answers.stream().sorted(comparing).forEach(this::print);
+        answers.stream().filter(answerable -> whatYear == -1 || whatYear == answerable.getYear())
+            .sorted(comparing)
+            .forEach(this::print);
 
     }
 

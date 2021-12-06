@@ -1,13 +1,13 @@
-package com.butads.adventofcode.version2021;
+package com.butads.adventofcode;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AdventOfCode2021Application {
+public class AdventOfCodeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdventOfCode2021Application.class, args);
+        SpringApplication.run(AdventOfCodeApplication.class, args);
     }
 
 }

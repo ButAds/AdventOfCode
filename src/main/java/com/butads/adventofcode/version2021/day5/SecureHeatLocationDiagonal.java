@@ -2,7 +2,7 @@ package com.butads.adventofcode.version2021.day5;
 
 import static com.butads.adventofcode.BufferUtils.getInputAsStringList;
 
-import com.butads.adventofcode.version2021.Answerable;
+import com.butads.adventofcode.Answerable;
 import java.io.IOException;
 import org.springframework.stereotype.Component;
 

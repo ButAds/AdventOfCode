@@ -1,7 +1,7 @@
 package com.butads.adventofcode.version2021.day3;
 
+import com.butads.adventofcode.Answerable;
 import com.butads.adventofcode.BufferUtils;
-import com.butads.adventofcode.version2021.Answerable;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.java.Log;

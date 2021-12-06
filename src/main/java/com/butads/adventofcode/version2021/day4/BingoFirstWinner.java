@@ -2,8 +2,8 @@ package com.butads.adventofcode.version2021.day4;
 
 import static java.util.Objects.requireNonNull;
 
+import com.butads.adventofcode.Answerable;
 import com.butads.adventofcode.BufferUtils;
-import com.butads.adventofcode.version2021.Answerable;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;

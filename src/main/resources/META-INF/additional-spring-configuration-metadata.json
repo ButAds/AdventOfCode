@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "config.performance.loops",
+      "type": "java.lang.Integer",
+      "description": "Contains the amount of loops needed to run the performance tests."
+    },
+    {
+      "name": "config.year",
+      "type": "java.lang.Integer",
+      "description": "What year to run. Default of -1 runs all years."
+    }
+  ]
+}

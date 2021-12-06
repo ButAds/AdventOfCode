@@ -3,7 +3,7 @@ package com.butads.adventofcode.version2021.day3;
 import static com.butads.adventofcode.BufferUtils.getInputAsStringList;
 import static com.butads.adventofcode.version2021.day3.Utils.getMostOccurring;
 
-import com.butads.adventofcode.version2021.Answerable;
+import com.butads.adventofcode.Answerable;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.java.Log;

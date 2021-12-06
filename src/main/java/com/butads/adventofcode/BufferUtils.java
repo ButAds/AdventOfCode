@@ -9,15 +9,23 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
+import java.util.stream.Collectors;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class BufferUtils {
 
-    public static BufferedReader getInputAsStream(String location) {
+    private static BufferedReader getInputAsStream(String location) {
         var is = BufferUtils.class.getResourceAsStream(location);
         var streamReader = new InputStreamReader(Objects.requireNonNull(is), StandardCharsets.UTF_8);
         return new BufferedReader(streamReader);
+    }
+
+    public static String getInputAsString(String location) throws IOException {
+        var br = getInputAsStream(location);
+        String toReturn = br.lines().collect(Collectors.joining());
+        br.close();
+        return toReturn;
     }
 
     public static List<String> getInputAsStringList(String location) throws IOException {
@@ -27,6 +35,7 @@ public class BufferUtils {
         while ((line = br.readLine()) != null) {
             allItems.add(line);
         }
+        br.close();
         return allItems;
     }
 
@@ -38,6 +47,7 @@ public class BufferUtils {
             int now = Integer.parseInt(line);
             items.add(now);
         }
+        reader.close();
         return items;
     }
 
@@ -48,6 +58,7 @@ public class BufferUtils {
         while ((line = br.readLine()) != null) {
             allItems.add(line);
         }
+        br.close();
         return allItems;
     }
 

@@ -1,10 +1,10 @@
 package com.butads.adventofcode.version2021.day2;
 
-import static com.butads.adventofcode.BufferUtils.getInputAsStream;
+import static com.butads.adventofcode.BufferUtils.getInputAsStringList;
 
-import com.butads.adventofcode.version2021.Answerable;
-import java.io.BufferedReader;
+import com.butads.adventofcode.Answerable;
 import java.io.IOException;
+import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,27 +13,27 @@ public class AimedDive implements Answerable {
     private static final String LOCATION = "/2021/day2/input.txt";
 
     public String getAnswer() throws IOException {
-        BufferedReader inputAsStream = getInputAsStream(LOCATION);
+        List<String> orders = getInputAsStringList(LOCATION);
 
         var horizontal = 0;
         var depth = 0;
         var aim = 0;
 
-        String line;
-        while ((line = inputAsStream.readLine()) != null) {
+        for (String line : orders) {
             String[] directionAndSpeed = line.split(" ");
             String direction = directionAndSpeed[0];
             int value = Integer.parseInt(directionAndSpeed[1]);
 
-            switch (direction) {
-                case "down" -> aim += value;
-                case "up" -> aim -= value;
-                case "forward" -> {
-                    horizontal += value;
-                    depth += (aim * value);
-                }
+            if ("down".equals(direction)) {
+                aim += value;
+            } else if ("up".equals(direction)) {
+                aim -= value;
+            } else if ("forward".equals(direction)) {
+                horizontal += value;
+                depth += (aim * value);
             }
         }
+
         return "" + (horizontal * depth);
     }
 
