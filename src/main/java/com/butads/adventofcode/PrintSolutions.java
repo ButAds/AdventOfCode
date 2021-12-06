@@ -31,19 +31,31 @@ public class PrintSolutions {
 
     private void print(Answerable answerable) {
         try {
-            Instant start = Instant.now();
-            for (int i = 0; i < performanceLoopCount; i++) {
-                answerable.getAnswer();
+            if (performanceLoopCount > 0) {
+                Instant start = Instant.now();
+                for (int i = 0; i < performanceLoopCount; i++) {
+                    answerable.getAnswer();
+                }
+                Instant end = Instant.now();
+                log.info(String.format("[%s] Day [%s] Section [%s] - took [%sms] - Answer [%s]",
+                    answerable.getYear(),
+                    answerable.getDay(),
+                    answerable.getSection(),
+                    (Duration.between(start, end).dividedBy(performanceLoopCount).toNanos() / 1_000_000F),
+                    answerable.getAnswer()));
+
+            } else {
+                log.info(String.format("[%s] Day [%s] Section [%s] - Answer [%s]",
+                    answerable.getYear(),
+                    answerable.getDay(),
+                    answerable.getSection(),
+                    answerable.getAnswer()));
             }
-            Instant end = Instant.now();
-            log.info(String.format("Day [%s] Section [%s] - took [%sms] - Answer [%s]",
-                answerable.getDay(),
-                answerable.getSection(),
-                (Duration.between(start, end).dividedBy(performanceLoopCount).toNanos() / 1_000_000F),
-                answerable.getAnswer()));
 
         } catch (IOException e) {
-            log.warning(String.format("Day [%s]  Section [%s] - ERROR: [%s]", answerable.getDay(),
+            log.warning(String.format("[%s] Day [%s]  Section [%s] - ERROR: [%s]",
+                answerable.getYear(),
+                answerable.getDay(),
                 answerable.getSection(),
                 e.getMessage()));
             e.printStackTrace();
@@ -52,7 +64,8 @@ public class PrintSolutions {
 
     @PostConstruct
     private void doPrint() {
-        Comparator<Answerable> comparing = comparing(Answerable::getDay)
+        Comparator<Answerable> comparing = comparing(Answerable::getYear)
+            .thenComparing(Answerable::getDay)
             .thenComparing(Answerable::getSection).reversed();
         answers.stream()
             .filter(answerable -> whatYear == -1 || whatYear == answerable.getYear())
