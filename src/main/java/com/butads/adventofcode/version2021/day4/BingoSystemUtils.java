@@ -1,4 +1,4 @@
-package com.butads.adventofcode.version2021.day.four;
+package com.butads.adventofcode.version2021.day4;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package com.butads.adventofcode.version2021.day.four;
+package com.butads.adventofcode.version2021.day4;
 
 import static java.util.function.Predicate.not;
 

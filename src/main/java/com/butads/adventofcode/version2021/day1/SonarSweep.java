@@ -1,4 +1,4 @@
-package com.butads.adventofcode.version2021.day.one;
+package com.butads.adventofcode.version2021.day1;
 
 import static com.butads.adventofcode.BufferUtils.getInputAsIntList;
 

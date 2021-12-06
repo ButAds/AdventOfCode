@@ -1,7 +1,7 @@
-package com.butads.adventofcode.version2021.day.three;
+package com.butads.adventofcode.version2021.day3;
 
 import static com.butads.adventofcode.BufferUtils.getInputAsStringList;
-import static com.butads.adventofcode.version2021.day.three.Utils.getMostOccurring;
+import static com.butads.adventofcode.version2021.day3.Utils.getMostOccurring;
 
 import com.butads.adventofcode.version2021.Answerable;
 import java.io.IOException;

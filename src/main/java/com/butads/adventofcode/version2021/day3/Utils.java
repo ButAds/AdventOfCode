@@ -1,4 +1,4 @@
-package com.butads.adventofcode.version2021.day.three;
+package com.butads.adventofcode.version2021.day3;
 
 import java.util.List;
 import lombok.experimental.UtilityClass;

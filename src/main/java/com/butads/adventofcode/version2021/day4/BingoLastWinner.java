@@ -1,6 +1,5 @@
-package com.butads.adventofcode.version2021.day.four;
+package com.butads.adventofcode.version2021.day4;
 
-import static com.butads.adventofcode.version2021.day.four.BingoSystemUtils.getOrderOfWinning;
 import static java.util.Objects.requireNonNull;
 
 import com.butads.adventofcode.BufferUtils;
@@ -14,9 +13,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Log
-public class BingoFirstWinner implements Answerable {
+public class BingoLastWinner implements Answerable {
 
     private static final String LOCATION = "/2021/day4/input.txt";
+
 
     @Override
     public String getAnswer() throws IOException {
@@ -24,8 +24,8 @@ public class BingoFirstWinner implements Answerable {
         BingoDraws totalAnswer = new BingoDraws(requireNonNull(input.poll()));
         List<BingoCard> cards = BingoSystemUtils.getCards(input);
 
-        LinkedList<BingoCard> orderOfWinning = getOrderOfWinning(totalAnswer, cards);
-        return "" + orderOfWinning.getFirst().calculateWinner(totalAnswer);
+        LinkedList<BingoCard> orderOfWinning = BingoSystemUtils.getOrderOfWinning(totalAnswer, cards);
+        return "" + orderOfWinning.getLast().calculateWinner(totalAnswer);
     }
 
     @Override
@@ -35,6 +35,6 @@ public class BingoFirstWinner implements Answerable {
 
     @Override
     public int getSection() {
-        return 1;
+        return 2;
     }
 }

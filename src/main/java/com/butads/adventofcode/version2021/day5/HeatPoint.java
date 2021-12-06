@@ -1,4 +1,4 @@
-package com.butads.adventofcode.version2021.day.five;
+package com.butads.adventofcode.version2021.day5;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

@@ -1,4 +1,4 @@
-package com.butads.adventofcode.version2021.day.two;
+package com.butads.adventofcode.version2021.day2;
 
 import static com.butads.adventofcode.BufferUtils.getInputAsStream;
 
