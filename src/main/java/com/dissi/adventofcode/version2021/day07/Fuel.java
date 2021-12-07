@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.TreeSet;
 import java.util.function.LongFunction;
 import lombok.experimental.UtilityClass;
-import lombok.extern.java.Log;
 
-@Log
 @UtilityClass
 public class Fuel {
 
