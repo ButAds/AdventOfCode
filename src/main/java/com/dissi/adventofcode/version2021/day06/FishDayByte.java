@@ -5,10 +5,8 @@ import static com.dissi.adventofcode.version2021.day06.Fish.getAmountOfFish;
 import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
 import java.io.IOException;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
-@Log
 @Component
 public class FishDayByte implements Answerable {
 
