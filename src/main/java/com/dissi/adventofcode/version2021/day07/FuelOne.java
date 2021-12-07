@@ -11,14 +11,10 @@ public class FuelOne implements Answerable {
 
     private static final String LOCATION = "/2021/day7/input.txt";
 
-    public static long calculateFuel(long distance) {
-        return distance;
-    }
-
     @Override
     public String getAnswer() throws IOException {
 
-        return "" + Fuel.getFuel(getSingleLineAsInt(LOCATION), FuelOne::calculateFuel);
+        return "" + Fuel.getFuel(getSingleLineAsInt(LOCATION), v -> v);
     }
 
     @Override

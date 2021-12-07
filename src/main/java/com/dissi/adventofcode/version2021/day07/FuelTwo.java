@@ -12,13 +12,9 @@ public class FuelTwo implements Answerable {
 
     private static final String LOCATION = "/2021/day7/input.txt";
 
-    public static long calculateFuel(long distance) {
-        return (distance * (distance + 1)) / 2;
-    }
-
     @Override
     public String getAnswer() throws IOException {
-        return "" + getFuel(getSingleLineAsInt(LOCATION), FuelTwo::calculateFuel);
+        return "" + getFuel(getSingleLineAsInt(LOCATION), distance -> (distance * (distance + 1)) / 2);
     }
 
     @Override
