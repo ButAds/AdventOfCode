@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 @Log
 public class BasinLava implements Answerable {
 
-    private static final String LOCATION = "/2021/day9/challenge.txt";
+    private static final String LOCATION = "/2021/day9/input.txt";
 
     private static void checkNearbyCoord(Coord c, Set<Coord> checked, List<String> data) {
         int gridVal = getByte(c.x, c.y, data, 9);
