@@ -13,27 +13,17 @@ public class Chunk {
         this.character = c;
     }
 
-    public static Chunk getMatchedOpening(Chunk openingStatement) {
-        return switch (openingStatement.character) {
-            case '{' -> new Chunk('}');
-            case '[' -> new Chunk(']');
-            case '<' -> new Chunk('>');
-            case '(' -> new Chunk(')');
-            default -> throw new RuntimeException("Fail open: " + openingStatement.character);
-        };
-    }
-
     public static Chunk getMatchedClose(Chunk closingStatement) {
         return switch (closingStatement.character) {
             case '}' -> new Chunk('{');
             case ']' -> new Chunk('[');
             case '>' -> new Chunk('<');
             case ')' -> new Chunk('(');
-            default -> throw new RuntimeException("Fail close: " + closingStatement.character);
+            default -> null;
         };
     }
 
-    public boolean isRemove() {
+    public boolean isCloseSection() {
         return switch (character) {
             case '}', ']', '>', ')' -> true;
             default -> false;
@@ -63,7 +53,7 @@ public class Chunk {
             case '[' -> 2;
             case '{' -> 3;
             case '<' -> 4;
-            default -> throw new RuntimeException("" + character);
+            default -> 0;
         };
     }
 }

@@ -6,39 +6,23 @@ import static com.dissi.adventofcode.version2021.day10.ChunkCollector.runChecks;
 import com.dissi.adventofcode.Answerable;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
 @Log
-public class Predictor implements Answerable {
+public class Interpreter implements Answerable {
 
     private static final String LOCATION = "/2021/day10/input.txt";
 
     @Override
     public String getAnswer() throws IOException {
         List<String> lines = getInputAsStringList(LOCATION);
-
-        List<LinkedList<Chunk>> noEnds = runChecks(lines, new ArrayList<>());
-        List<Long> scores = new ArrayList<>();
-
-        noEnds.forEach(chunks -> {
-            long score = 0;
-            while (!chunks.isEmpty()) {
-                Chunk c = chunks.getLast();
-                chunks.removeLast();
-                score *= 5;
-                score += c.getOpenScore();
-            }
-            scores.add(score);
-        });
-
-        Collections.sort(scores);
-
-        return "" + scores.get(scores.size() / 2);
+        List<Chunk> failures = new ArrayList<>();
+        runChecks(lines, failures);
+        int out = failures.stream().mapToInt(Chunk::getScore).sum();
+        return "" + out;
     }
 
     @Override
@@ -48,7 +32,7 @@ public class Predictor implements Answerable {
 
     @Override
     public int getSection() {
-        return 2;
+        return 1;
     }
 
 }

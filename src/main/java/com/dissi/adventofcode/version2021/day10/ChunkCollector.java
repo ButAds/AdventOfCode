@@ -1,35 +1,27 @@
 package com.dissi.adventofcode.version2021.day10;
 
-import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
-
-import com.dissi.adventofcode.Answerable;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import lombok.extern.java.Log;
-import org.springframework.stereotype.Component;
+import lombok.experimental.UtilityClass;
 
-@Component
-@Log
-public class Interperter implements Answerable {
+@UtilityClass
+public class ChunkCollector {
 
-    private static final String LOCATION = "/2021/day10/input.txt";
 
-    @Override
-    public String getAnswer() throws IOException {
-        List<String> lines = getInputAsStringList(LOCATION);
-        int out = 0;
+    public static List<LinkedList<Chunk>> runChecks(List<String> lines, List<Chunk> offenders) {
+        List<LinkedList<Chunk>> remainingCharacters = new ArrayList<>();
         for (String line : lines) {
             LinkedList<Chunk> chunks = new LinkedList<>();
             Chunk offender = null;
 
             char[] charArray = line.toCharArray();
+
             for (Character character : charArray) {
                 Chunk newChunk = new Chunk(character);
-
                 if (newChunk.isAdd()) {
                     chunks.add(newChunk);
-                } else if (chunks.isEmpty() && newChunk.isRemove()) {
+                } else if (chunks.isEmpty() && newChunk.isCloseSection()) {
                     offender = newChunk;
                     break;
                 } else {
@@ -44,21 +36,11 @@ public class Interperter implements Answerable {
                 }
             }
             if (offender != null) {
-                out += offender.getScore();
+                offenders.add(offender);
+            } else {
+                remainingCharacters.add(chunks);
             }
         }
-
-        return "" + out;
+        return remainingCharacters;
     }
-
-    @Override
-    public int getDay() {
-        return 10;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
-
 }
