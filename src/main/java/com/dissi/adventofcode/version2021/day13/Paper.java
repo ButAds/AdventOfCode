@@ -50,11 +50,15 @@ public class Paper {
         return positions.size();
     }
 
-    public boolean fold() {
-        Set<Position> newPositions = new HashSet<>();
+    public boolean allFoldDone() {
+        return instructions.isEmpty();
+    }
+
+    public void fold() {
         if (instructions.isEmpty()) {
-            return true;
+            return;
         }
+        Set<Position> newPositions = new HashSet<>();
         Instruction instruction = instructions.poll();
         int foldOn = instruction.location;
         if (instruction.line.equals("x")) {
@@ -67,7 +71,6 @@ public class Paper {
                     int newX = foldOn - distance;
                     newPositions.add(new Position(newX, pos.getY()));
                 }
-
             }
         } else {
             ySize = foldOn;
@@ -82,7 +85,6 @@ public class Paper {
             }
         }
         positions = newPositions;
-        return this.instructions.isEmpty();
     }
 
     @Override
@@ -90,7 +92,7 @@ public class Paper {
         StringBuilder sb = new StringBuilder();
         for (int y = 0; y < ySize; y++) {
             for (int x = 0; x < xSize; x++) {
-                sb.append(positions.contains(new Position(x, y)) ? '█' : ' ');
+                sb.append(positions.contains(new Position(x, y)) ? "██" : "  ");
             }
             sb.append('\n');
         }

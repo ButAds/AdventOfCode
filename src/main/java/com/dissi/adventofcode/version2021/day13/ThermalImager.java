@@ -17,7 +17,8 @@ public class ThermalImager implements Answerable {
         List<String> lines = getInputAsStringList(LOCATION);
         Paper paper = new Paper(lines);
 
-        while (!paper.fold()) {
+        while (!paper.allFoldDone()) {
+            paper.fold();
         }
 
         return "\n" + paper;

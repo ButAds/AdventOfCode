@@ -5,17 +5,16 @@ import static java.util.Comparator.comparing;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Comparator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-@Log4j2
+@Log
 public class PrintSolutions {
 
     private final List<Answerable> answers;
@@ -53,7 +52,7 @@ public class PrintSolutions {
             }
 
         } catch (IOException e) {
-            log.warn(String.format("[%s] Day [%s]  Section [%s] - ERROR: [%s]",
+            log.warning(String.format("[%s] Day [%s]  Section [%s] - ERROR: [%s]",
                 answerable.getYear(),
                 answerable.getDay(),
                 answerable.getSection(),
@@ -64,15 +63,19 @@ public class PrintSolutions {
 
     @PostConstruct
     private void doPrint() {
-        Comparator<Answerable> comparing = comparing(Answerable::getYear)
-            .thenComparing(Answerable::getDay)
-            .thenComparing(Answerable::getSection).reversed();
+        Instant start = Instant.now();
+
         answers.stream()
-            .filter(answerable -> whatYear == -1 || whatYear == answerable.getYear())
             .filter(answerable -> answerable.getDay() >= fromDay)
-            .sorted(comparing)
+            .filter(answerable -> whatYear == -1 || whatYear == answerable.getYear())
+            .sorted(comparing(Answerable::getYear)
+                .thenComparing(Answerable::getDay)
+                .thenComparing(Answerable::getSection).reversed())
             .forEach(this::print);
 
+        Instant end = Instant.now();
+        log.info(String.format("Finished solution run in [%sms]",
+            (Duration.between(start, end).toNanos() / 1_000_000F)));
     }
 
 }
