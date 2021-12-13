@@ -6,10 +6,8 @@ import com.dissi.adventofcode.Answerable;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
-@Log
 @Component
 public class DayEightSolutionTwo implements Answerable {
 

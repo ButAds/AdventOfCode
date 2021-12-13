@@ -9,11 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log
 public class Predictor implements Answerable {
 
     private static final String LOCATION = "/2021/day10/input.txt";

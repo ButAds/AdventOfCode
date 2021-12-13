@@ -5,11 +5,9 @@ import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 import com.dissi.adventofcode.Answerable;
 import java.io.IOException;
 import java.util.List;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log
 public class OneHundredDaysLater implements Answerable {
 
     private static final String LOCATION = "/2021/day11/input.txt";

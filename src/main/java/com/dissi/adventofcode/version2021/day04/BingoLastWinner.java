@@ -8,15 +8,12 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log
 public class BingoLastWinner implements Answerable {
 
     private static final String LOCATION = "/2021/day4/input.txt";
-
 
     @Override
     public String getAnswer() throws IOException {

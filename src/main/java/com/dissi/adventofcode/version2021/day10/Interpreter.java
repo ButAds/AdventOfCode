@@ -7,11 +7,9 @@ import com.dissi.adventofcode.Answerable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log
 public class Interpreter implements Answerable {
 
     private static final String LOCATION = "/2021/day10/input.txt";

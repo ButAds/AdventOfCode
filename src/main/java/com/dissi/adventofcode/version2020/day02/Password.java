@@ -2,9 +2,7 @@ package com.dissi.adventofcode.version2020.day02;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lombok.extern.java.Log;
 
-@Log
 public class Password {
 
     private static final Pattern PATTERN = Pattern.compile("(\\d+)-(\\d+) (\\w): (\\w*)");

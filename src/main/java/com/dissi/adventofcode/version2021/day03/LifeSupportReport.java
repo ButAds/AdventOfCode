@@ -6,11 +6,9 @@ import static com.dissi.adventofcode.version2021.day03.Utils.getMostOccurring;
 import com.dissi.adventofcode.Answerable;
 import java.io.IOException;
 import java.util.List;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log
 public class LifeSupportReport implements Answerable {
 
     private static final String LOCATION = "/2021/day3/input.txt";

@@ -9,13 +9,13 @@ import java.util.Comparator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-@Log
+@Log4j2
 public class PrintSolutions {
 
     private final List<Answerable> answers;
@@ -53,7 +53,7 @@ public class PrintSolutions {
             }
 
         } catch (IOException e) {
-            log.warning(String.format("[%s] Day [%s]  Section [%s] - ERROR: [%s]",
+            log.warn(String.format("[%s] Day [%s]  Section [%s] - ERROR: [%s]",
                 answerable.getYear(),
                 answerable.getDay(),
                 answerable.getSection(),

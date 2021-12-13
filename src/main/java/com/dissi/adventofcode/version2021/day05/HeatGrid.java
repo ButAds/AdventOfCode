@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lombok.extern.java.Log;
 
-@Log
 public class HeatGrid {
 
     private final List<HeatLine> heatLines;

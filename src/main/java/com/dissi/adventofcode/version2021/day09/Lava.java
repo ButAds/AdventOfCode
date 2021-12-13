@@ -7,15 +7,12 @@ import static com.dissi.adventofcode.version2021.day09.LavaLakeCalculator.isLowe
 import com.dissi.adventofcode.Answerable;
 import java.io.IOException;
 import java.util.List;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log
 public class Lava implements Answerable {
 
     private static final String LOCATION = "/2021/day9/input.txt";
-
 
     @Override
     public String getAnswer() throws IOException {
@@ -30,9 +27,9 @@ public class Lava implements Answerable {
                 }
             }
         }
+
         return "" + out;
     }
-
 
     @Override
     public int getDay() {

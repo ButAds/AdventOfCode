@@ -4,11 +4,9 @@ import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
 import java.io.IOException;
 import java.util.List;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log
 public class SonarSweep implements Answerable {
 
     private static final String LOCATION = "/2021/day1/input.txt";

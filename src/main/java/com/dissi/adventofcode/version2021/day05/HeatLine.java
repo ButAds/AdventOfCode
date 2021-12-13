@@ -7,9 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lombok.Getter;
 import lombok.ToString;
-import lombok.extern.java.Log;
 
-@Log
 @Getter
 @ToString
 public class HeatLine {

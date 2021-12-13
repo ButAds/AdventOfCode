@@ -14,11 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.EqualsAndHashCode;
-import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 
 @Component
-@Log
 public class BasinLava implements Answerable {
 
     private static final String LOCATION = "/2021/day9/input.txt";

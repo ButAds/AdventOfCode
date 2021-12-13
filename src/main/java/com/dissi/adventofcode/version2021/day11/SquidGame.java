@@ -7,9 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lombok.Getter;
-import lombok.extern.java.Log;
 
-@Log
 public class SquidGame {
 
     private final int[][] grid;
