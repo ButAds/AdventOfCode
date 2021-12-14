@@ -20,6 +20,7 @@ public class Polymerization {
             .collect(Collectors.toMap(poly -> poly.key, poly -> poly));
 
         CountMap<String> pairs = new CountMap<>();
+        CountMap<Character> counts = new CountMap<>();
 
         // Length -1 to prevent OOB error.
         for (int i = 0; i < init.length() - 1; i++) {
@@ -27,7 +28,6 @@ public class Polymerization {
         }
 
         // Count start state
-        CountMap<Character> counts = new CountMap<>();
         init.chars().forEach(e -> counts.increment((char) e));
 
         // Simulation of the steps
@@ -43,27 +43,27 @@ public class Polymerization {
         return items.get(items.size() - 1) - items.get(0);
     }
 
-    private static CountMap<String> doStep(Map<String, PolymerRules> rules, CountMap<String> pairs,
+    private static CountMap<String> doStep(Map<String, PolymerRules> rules, CountMap<String> existingPairs,
         CountMap<Character> existingCounts) {
-        CountMap<String> newCount = new CountMap<>();
-        for (String pair : pairs.getOccurances().keySet()) {
+        CountMap<String> newPairs = new CountMap<>();
+        for (String pair : existingPairs.getOccurances().keySet()) {
 
             PolymerRules appliedRule = rules.get(pair);
             // Get current count value for a pair
-            long increment = pairs.getValue(pair);
+            long increment = existingPairs.getValue(pair);
 
             // Add additional left/right pairs
             String keyLeft = pair.charAt(0) + appliedRule.newChar;
             String keyRight = appliedRule.newChar + pair.charAt(1);
 
             // Increment counters
-            newCount.increment(keyLeft, increment);
-            newCount.increment(keyRight, increment);
+            newPairs.increment(keyLeft, increment);
+            newPairs.increment(keyRight, increment);
 
             // Finally, increment current existing count
             existingCounts.increment(appliedRule.newChar.charAt(0), increment);
         }
-        return newCount;
+        return newPairs;
     }
 
     private static class PolymerRules {
