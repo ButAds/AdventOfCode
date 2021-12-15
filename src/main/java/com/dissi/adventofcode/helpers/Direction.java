@@ -10,6 +10,8 @@ public enum Direction {
     SOUTHWEST(-1, 1),
     WEST(-1, 0);
 
+    public static final Direction[] NON_DIAGONAL = new Direction[] {NORTH, EAST, SOUTH, WEST};
+
     final int dx;
     final int dy;
 
