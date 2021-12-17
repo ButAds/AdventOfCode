@@ -15,8 +15,6 @@ public class HighNoon implements Answerable {
         String target = BufferUtils.getInputAsString(LOCATION);
 
         PoolBar poolBar = new PoolBar(target);
-        poolBar.solve();
-
         return "" + poolBar.getMaxY();
     }
 
