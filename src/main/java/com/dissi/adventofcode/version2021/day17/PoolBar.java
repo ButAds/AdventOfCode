@@ -28,7 +28,7 @@ public class PoolBar {
 
     public void solve() {
         int upperBoundY = (-startY) - startY + 1;
-        int lowerBoundX = (int) Math.sqrt(startX);
+        int lowerBoundX = (int) Math.sqrt(startX * 2);
         for (int x = lowerBoundX; x <= endX; x++) {
             for (int y = startY; y < upperBoundY; y++) {
                 if (doSteps(x, y)) {
