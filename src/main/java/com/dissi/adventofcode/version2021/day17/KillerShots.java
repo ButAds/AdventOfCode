@@ -27,6 +27,6 @@ public class KillerShots implements Answerable {
 
     @Override
     public int getSection() {
-        return 1;
+        return 2;
     }
 }
