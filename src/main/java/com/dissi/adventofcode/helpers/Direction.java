@@ -4,13 +4,17 @@ public enum Direction {
     NORTHWEST(-1, -1),
     NORTH(0, -1),
     NORTHEAST(1, -1),
+    WEST(-1, 0),
+    SELF(0, 0),
     EAST(1, 0),
-    SOUTHEAST(1, 1),
-    SOUTH(0, 1),
     SOUTHWEST(-1, 1),
-    WEST(-1, 0);
+    SOUTH(0, 1),
+    SOUTHEAST(1, 1);
 
     public static final Direction[] NON_DIAGONAL = new Direction[] {NORTH, EAST, SOUTH, WEST};
+    public static final Direction[] DIAGONAL = new Direction[] {NORTH, EAST, SOUTH, WEST, NORTHEAST, NORTHWEST,
+        SOUTHWEST, SOUTHEAST};
+
 
     final int dx;
     final int dy;
@@ -21,6 +25,6 @@ public enum Direction {
     }
 
     public Position translate(Position location) {
-        return new Position(location.getX() - this.dx, location.getY() - this.dy);
+        return new Position(location.getX() + this.dx, location.getY() + this.dy);
     }
 }

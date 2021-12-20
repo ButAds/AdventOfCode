@@ -59,7 +59,7 @@ public class SquidGame {
         locations.add(location);
         grid[location.getY()][location.getX()] = 0;
         // neighbours
-        Arrays.stream(Direction.values()).map(dir -> dir.translate(location))
+        Arrays.stream(Direction.DIAGONAL).map(dir -> dir.translate(location))
             .filter(this::validLocation)
             .forEach(check -> {
                 grid[check.getY()][check.getX()]++;
