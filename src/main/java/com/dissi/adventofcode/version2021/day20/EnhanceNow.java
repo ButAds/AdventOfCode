@@ -36,7 +36,7 @@ public class EnhanceNow {
             in.stream().map(String::toCharArray).map(EnhanceNow::toCharArray).toArray(Character[][]::new));
 
         Coordinates inputCoords = new Coordinates();
-        inputCoords.fill(inputImage.grid, '#');
+        inputCoords.fill(inputImage.getGrid(), '#');
 
         Coordinates outputImage = new Coordinates();
         for (int it = 0; it < times; it++) {

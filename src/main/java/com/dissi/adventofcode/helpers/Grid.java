@@ -1,7 +1,10 @@
 package com.dissi.adventofcode.helpers;
 
+import lombok.Getter;
+
 public class Grid<T> {
 
+    @Getter
     private T[][] grid;
 
     public Grid(T[][] grid) {
