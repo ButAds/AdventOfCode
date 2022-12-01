@@ -3,7 +3,10 @@ package com.dissi.adventofcode;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -27,6 +30,14 @@ public class BufferUtils {
         String toReturn = br.lines().collect(Collectors.joining());
         br.close();
         return toReturn;
+    }
+
+    public static String getInputAsStringNoJoining(String location) throws IOException {
+        try {
+            return Files.readString(Paths.get(Objects.requireNonNull(BufferUtils.class.getResource(location)).toURI()));
+        } catch (URISyntaxException e) {
+            throw new IOException("Does not exist");
+        }
     }
 
     public static List<String> getInputAsStringList(String location) throws IOException {
