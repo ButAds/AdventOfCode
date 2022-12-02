@@ -14,9 +14,9 @@ public class RockPaperPerfectStrategy implements Answerable {
     public String getAnswer() throws IOException {
         List<String> allLines = BufferUtils.getInputAsStringList(LOCATION);
         int amount = allLines.stream()
-            .map(Play::create)
-            .mapToInt(play ->
-                (play.opponent() + 1) + play.movePerfectResult() * 3)
+            .map(PlayRules::create)
+            .mapToInt(playRules ->
+                (playRules.opponent() + 1) + playRules.movePerfectResult() * 3)
             .sum();
 
         return "" + amount;
