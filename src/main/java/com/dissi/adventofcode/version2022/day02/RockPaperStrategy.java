@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class RockPaperStrategy implements Answerable {
 
-
     private static final String LOCATION = "/2022/day2/input.txt";
 
     public String getAnswer() throws IOException {
