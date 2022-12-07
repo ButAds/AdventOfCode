@@ -68,12 +68,12 @@ record ElfDirectory(String name, ElfDirectory up, HashSet<ElfDirectory> elfDirec
         return result;
     }
 
-    public void toString(int depth) {
+    public void printString(int depth) {
         for (ElfDirectory directory : elfDirectories) {
             System.out.println(
                 Stream.generate(() -> "\t").limit(depth).collect(Collectors.joining()) + " - " + directory.name
                     + " (DIR, size = " + directory.size() + ")");
-            directory.toString(depth + 1);
+            directory.printString(depth + 1);
         }
         for (ElfFile file : elfFiles) {
             System.out.println(
