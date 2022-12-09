@@ -16,6 +16,10 @@ public class Position {
     private final int x;
     private final int y;
 
+    public Position() {
+        this(0, 0);
+    }
+
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
@@ -31,5 +35,13 @@ public class Position {
         }
         x = Integer.parseInt(matcher.group(1));
         y = Integer.parseInt(matcher.group(2));
+    }
+
+    public Position substract(Position other) {
+        return new Position(x - other.x, y - other.y);
+    }
+
+    public Position add(int deltaX, int deltaY) {
+        return new Position(x + deltaX, y + deltaY);
     }
 }
