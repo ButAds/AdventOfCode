@@ -1,18 +1,16 @@
 package com.dissi.adventofcode.version2022.day05;
 
-import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
+import com.dissi.adventofcode.SolutionAnnotation;
 import com.dissi.adventofcode.version2022.day05.CargoDock.DockInstruction;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class CargoCrane implements Answerable {
-
+public class CargoCrane {
 
     private static final String LOCATION = "/2022/day5/input.txt";
 
+    @SolutionAnnotation(day = 5, section = 1, year = 2022)
     public String getAnswer() throws IOException {
         String data = BufferUtils.getInputAsStringNoJoining(LOCATION);
 
@@ -23,20 +21,4 @@ public class CargoCrane implements Answerable {
 
         return "" + dock.getAnswer();
     }
-
-    @Override
-    public int getDay() {
-        return 5;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
-
-    @Override
-    public int getYear() {
-        return 2022;
-    }
-
 }

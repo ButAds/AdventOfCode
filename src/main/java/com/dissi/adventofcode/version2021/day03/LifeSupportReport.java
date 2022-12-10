@@ -3,17 +3,18 @@ package com.dissi.adventofcode.version2021.day03;
 import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 import static com.dissi.adventofcode.version2021.day03.Utils.getMostOccurring;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class LifeSupportReport implements Answerable {
+
+public class LifeSupportReport {
 
     private static final String LOCATION = "/2021/day3/input.txt";
 
+    @SolutionAnnotation(day = 3, section = 2, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> allItems = getInputAsStringList(LOCATION);
 
         long oxy = calculateBits(allItems, '1', '0');
@@ -42,13 +43,4 @@ public class LifeSupportReport implements Answerable {
         return 0;
     }
 
-    @Override
-    public int getDay() {
-        return 3;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
-    }
 }

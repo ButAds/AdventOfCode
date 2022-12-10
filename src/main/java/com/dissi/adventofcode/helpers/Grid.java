@@ -5,29 +5,29 @@ import lombok.Getter;
 public class Grid<T> {
 
     @Getter
-    private T[][] grid;
+    private final T[][] memGrid;
 
     public Grid(T[][] grid) {
-        this.grid = grid;
+        this.memGrid = grid;
     }
 
     public void set(Position e, T c) {
-        grid[e.getY()][e.getX()] = c;
+        memGrid[e.getY()][e.getX()] = c;
     }
 
     public int sizeX() {
-        return grid[0].length;
+        return memGrid[0].length;
     }
 
     public int sizeY() {
-        return grid.length;
+        return memGrid.length;
     }
 
     public T at(Position p, T defaultResult) {
-        if (p.getX() >= 0 && p.getX() < grid[0].length &&
-            p.getY() >= 0 && p.getY() < grid.length &&
-            grid[p.getY()][p.getX()] != null) {
-            return grid[p.getY()][p.getX()];
+        if (p.getX() >= 0 && p.getX() < memGrid[0].length &&
+            p.getY() >= 0 && p.getY() < memGrid.length &&
+            memGrid[p.getY()][p.getX()] != null) {
+            return memGrid[p.getY()][p.getX()];
         }
 
         return defaultResult;

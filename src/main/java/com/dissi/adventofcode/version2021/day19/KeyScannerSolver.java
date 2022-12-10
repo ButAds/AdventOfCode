@@ -12,10 +12,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import lombok.extern.java.Log;
-import org.springframework.stereotype.Service;
 
 @Log
-@Service
 public class KeyScannerSolver {
 
     private static final String LOCATION = "/2021/day19/input.txt";

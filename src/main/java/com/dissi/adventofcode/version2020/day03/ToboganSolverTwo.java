@@ -3,17 +3,16 @@ package com.dissi.adventofcode.version2020.day03;
 import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 import static com.dissi.adventofcode.version2020.day03.Toboggan.traverse;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class ToboganSolverTwo implements Answerable {
+
+public class ToboganSolverTwo {
 
     private static final String LOCATION = "/2020/day3/input.txt";
 
-    @Override
+    @SolutionAnnotation(day = 3, section = 2, year = 2020)
     public String getAnswer() throws IOException {
         List<String> treeList = getInputAsStringList(LOCATION);
         long amountOfTrees = traverse(treeList, 1, 1) *
@@ -22,20 +21,5 @@ public class ToboganSolverTwo implements Answerable {
             traverse(treeList, 1, 7) *
             traverse(treeList, 2, 1);
         return "" + amountOfTrees;
-    }
-
-    @Override
-    public int getYear() {
-        return 2020;
-    }
-
-    @Override
-    public int getDay() {
-        return 3;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
     }
 }

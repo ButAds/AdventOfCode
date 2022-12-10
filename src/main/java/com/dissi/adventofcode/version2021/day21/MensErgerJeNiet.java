@@ -2,15 +2,14 @@ package com.dissi.adventofcode.version2021.day21;
 
 import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.java.Log;
-import org.springframework.stereotype.Component;
 
 @Log
-@Component
-public class MensErgerJeNiet implements Answerable {
+
+public class MensErgerJeNiet {
 
     private static final String LOCATION = "/2021/day21/example.txt";
 
@@ -18,37 +17,28 @@ public class MensErgerJeNiet implements Answerable {
     private Player two;
     private int diceThrows = 0;
 
-    @Override
-    public int getDay() {
-        return 21;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
-
-    @Override
+    @SolutionAnnotation(day = 21, section = 1, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> inputAsStringList = getInputAsStringList(LOCATION);
 
         one = new Player(inputAsStringList.get(0));
         two = new Player(inputAsStringList.get(1));
 
-        Player loser = simulate(1000);
+        Player loser = simulate();
 
         return "" + (diceThrows * loser.score);
     }
 
-    private Player simulate(int maxScore) {
+    private Player simulate() {
 
         while (true) {
             doPlay(one);
-            if (one.score >= maxScore) {
+            if (one.score >= 1000) {
                 return two;
             }
             doPlay(two);
-            if (two.score >= maxScore) {
+            if (two.score >= 1000) {
                 return one;
             }
         }

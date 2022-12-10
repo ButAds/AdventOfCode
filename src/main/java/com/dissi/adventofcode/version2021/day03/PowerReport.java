@@ -1,17 +1,18 @@
 package com.dissi.adventofcode.version2021.day03;
 
-import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class PowerReport implements Answerable {
+
+public class PowerReport {
 
     private static final String LOCATION = "/2021/day3/input.txt";
 
+    @SolutionAnnotation(day = 3, section = 1, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> reports = BufferUtils.getInputAsStringList(LOCATION);
         int[] occurrences = new int[12];
 
@@ -39,13 +40,4 @@ public class PowerReport implements Answerable {
         return "" + total;
     }
 
-    @Override
-    public int getDay() {
-        return 3;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
 }

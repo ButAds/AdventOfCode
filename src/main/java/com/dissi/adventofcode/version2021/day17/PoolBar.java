@@ -11,14 +11,16 @@ public class PoolBar {
     private final int startY;
     private final int endY;
     @Getter
-    private int maxY;
+    private final int maxY;
     @Getter
     private int hits = 0;
 
     public PoolBar(String shotType) {
         Pattern pattern = Pattern.compile("target area: x=(\\d*)..(\\d*), y=-(\\d*)..-(\\d*)");
         Matcher matcher = pattern.matcher(shotType);
-        matcher.matches();
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("Got bad data");
+        }
         this.startX = Math.min(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
         this.endX = Math.max(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
         this.startY = Math.max(Integer.parseInt(matcher.group(3)), Integer.parseInt(matcher.group(4))) * -1;
@@ -28,7 +30,7 @@ public class PoolBar {
 
     public void solve() {
         int upperBoundY = (-startY) - 1;
-        int lowerBoundX = (int) Math.sqrt(startX * 2);
+        int lowerBoundX = (int) Math.sqrt(startX * 2d);
         for (int x = lowerBoundX; x <= endX; x++) {
             for (int y = startY; y <= upperBoundY; y++) {
                 if (doSteps(x, y)) {

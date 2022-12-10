@@ -5,7 +5,7 @@ import static com.dissi.adventofcode.version2021.day09.LavaLakeCalculator.getByt
 import static com.dissi.adventofcode.version2021.day09.LavaLakeCalculator.isLowestNeighbour;
 import static java.util.Comparator.comparingInt;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,10 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.EqualsAndHashCode;
-import org.springframework.stereotype.Component;
 
-@Component
-public class BasinLava implements Answerable {
+
+public class BasinLava {
 
     private static final String LOCATION = "/2021/day9/input.txt";
 
@@ -48,8 +47,9 @@ public class BasinLava implements Answerable {
         }
     }
 
-    @Override
+    @SolutionAnnotation(day = 9, section = 2, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> lines = getInputAsStringList(LOCATION);
 
         List<Coord> lowestCoords = new ArrayList<>();
@@ -76,16 +76,6 @@ public class BasinLava implements Answerable {
         return "" + sorted.get(0).getValue() * sorted.get(1).getValue() * sorted.get(2).getValue();
     }
 
-
-    @Override
-    public int getDay() {
-        return 9;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
-    }
 
     @EqualsAndHashCode
     private static class Coord {

@@ -2,19 +2,19 @@ package com.dissi.adventofcode.version2021.day08;
 
 import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import org.springframework.stereotype.Component;
 
-@Component
-public class DayEightSolutionTwo implements Answerable {
+
+public class DayEightSolutionTwo {
 
     private static final String LOCATION = "/2021/day8/input.txt";
 
-    @Override
+    @SolutionAnnotation(day = 8, section = 2, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> inputAsStringList = getInputAsStringList(LOCATION);
         int total = 0;
         for (String s : inputAsStringList) {
@@ -33,13 +33,4 @@ public class DayEightSolutionTwo implements Answerable {
 
     }
 
-    @Override
-    public int getDay() {
-        return 8;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
-    }
 }

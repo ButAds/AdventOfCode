@@ -4,32 +4,22 @@ import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 import static com.dissi.adventofcode.version2021.day24.ComputerSimulator.executeInstruction;
 import static com.dissi.adventofcode.version2021.day24.ComputerSimulator.getRegisters;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.stereotype.Component;
 
-@Component
-public class ComputerInput implements Answerable {
+
+public class ComputerInput {
 
     private static final String LOCATION = "/2021/day24/input.txt";
-    private List<String> inputs;
     private final Map<String, String> memory = new HashMap<>(8192);
+    private List<String> inputs;
 
-    @Override
-    public int getDay() {
-        return 24;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
-
-    @Override
+    @SolutionAnnotation(day = 24, section = 1, year = 2021)
     public String getAnswer() throws IOException {
+
         inputs = getInputAsStringList(LOCATION);
         Map<String, Long> vals = getRegisters();
 

@@ -1,16 +1,15 @@
 package com.dissi.adventofcode.version2022.day08;
 
-import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class NobodyIsHereButUsTrees implements Answerable {
+public class NobodyIsHereButUsTrees {
 
     private static final String LOCATION = "/2022/day8/input.txt";
 
+    @SolutionAnnotation(day = 8, section = 1, year = 2022)
     public String getAnswer() throws IOException {
         List<String> data = BufferUtils.getInputAsStringList(LOCATION);
 
@@ -18,20 +17,4 @@ public class NobodyIsHereButUsTrees implements Answerable {
 
         return "" + visibilityMap.countVisible();
     }
-
-    @Override
-    public int getDay() {
-        return 8;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
-
-    @Override
-    public int getYear() {
-        return 2022;
-    }
-
 }

@@ -36,12 +36,11 @@ public class EnhanceNow {
             in.stream().map(String::toCharArray).map(EnhanceNow::toCharArray).toArray(Character[][]::new));
 
         Coordinates inputCoords = new Coordinates();
-        inputCoords.fill(inputImage.getGrid(), '#');
+        inputCoords.fill(inputImage.getMemGrid(), '#');
 
         Coordinates outputImage = new Coordinates();
         for (int it = 0; it < times; it++) {
             int iteration = it;
-            log.info("Start of day " + it);
             Grid<Integer> n = getIntegerGrid(inputCoords);
             for (int i = -times; i <= n.sizeX() + times; i++) {
                 for (int j = -times; j <= n.sizeY() + times; j++) {

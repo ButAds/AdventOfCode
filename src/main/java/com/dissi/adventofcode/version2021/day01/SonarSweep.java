@@ -1,17 +1,18 @@
 package com.dissi.adventofcode.version2021.day01;
 
-import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class SonarSweep implements Answerable {
+
+public class SonarSweep {
 
     private static final String LOCATION = "/2021/day1/input.txt";
 
+    @SolutionAnnotation(day = 1, section = 1, year = 2021)
     public String getAnswer() throws IOException {
+
         int amount = 0;
 
         List<String> lines = BufferUtils.getInputAsStringList(LOCATION);
@@ -28,13 +29,4 @@ public class SonarSweep implements Answerable {
         return "" + amount;
     }
 
-    @Override
-    public int getDay() {
-        return 1;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
 }

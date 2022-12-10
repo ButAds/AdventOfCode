@@ -2,26 +2,15 @@ package com.dissi.adventofcode.version2021.day20;
 
 import static com.dissi.adventofcode.version2021.day20.EnhanceNow.doDay;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
-import org.springframework.stereotype.Component;
 
-@Component
-public class TrenchMapper implements Answerable {
+
+public class TrenchMapper {
 
     private static final String LOCATION = "/2021/day20/example.txt";
 
-    @Override
-    public int getDay() {
-        return 20;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
-
-    @Override
+    @SolutionAnnotation(day = 20, section = 1, year = 2021)
     public String getAnswer() throws IOException {
 
         return "" + doDay(LOCATION, 2);

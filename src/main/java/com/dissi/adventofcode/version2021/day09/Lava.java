@@ -4,18 +4,18 @@ import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 import static com.dissi.adventofcode.version2021.day09.LavaLakeCalculator.getByte;
 import static com.dissi.adventofcode.version2021.day09.LavaLakeCalculator.isLowestNeighbour;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class Lava implements Answerable {
+
+public class Lava {
 
     private static final String LOCATION = "/2021/day9/input.txt";
 
-    @Override
+    @SolutionAnnotation(day = 9, section = 1, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> lines = getInputAsStringList(LOCATION);
         int out = 0;
 
@@ -30,15 +30,4 @@ public class Lava implements Answerable {
 
         return "" + out;
     }
-
-    @Override
-    public int getDay() {
-        return 9;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
-
 }

@@ -2,17 +2,16 @@ package com.dissi.adventofcode.version2020.day01;
 
 import static com.dissi.adventofcode.BufferUtils.getInputAsIntList;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class Repair implements Answerable {
+
+public class Repair {
 
     private static final String LOCATION = "/2020/day1/input.txt";
 
-    @Override
+    @SolutionAnnotation(day = 1, section = 1, year = 2020)
     public String getAnswer() throws IOException {
         List<Integer> intList = getInputAsIntList(LOCATION);
 
@@ -29,20 +28,5 @@ public class Repair implements Answerable {
             }
         }
         return 0;
-    }
-
-    @Override
-    public int getYear() {
-        return 2020;
-    }
-
-    @Override
-    public int getDay() {
-        return 1;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
     }
 }

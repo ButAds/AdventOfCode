@@ -1,18 +1,23 @@
 package com.dissi.adventofcode.version2022.day04;
 
-import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
+import com.dissi.adventofcode.SolutionAnnotation;
 import com.dissi.adventofcode.version2022.day04.Job.Assignment;
 import com.dissi.adventofcode.version2022.day04.Job.Pair;
 import java.io.IOException;
-import org.springframework.stereotype.Component;
 
-@Component
-public class CleanupOverlap implements Answerable {
+
+public class CleanupOverlap {
 
 
     private static final String LOCATION = "/2022/day4/input.txt";
 
+    private static boolean checkOverlap(Pair left, Pair right) {
+        return (left.start() >= right.start() && left.start() <= right.end()) ||
+            (right.start() >= left.start() && right.start() <= left.end());
+    }
+
+    @SolutionAnnotation(day = 4, section = 2, year = 2022)
     public String getAnswer() throws IOException {
         long result = BufferUtils.getInputAsStringList(LOCATION).stream()
             .map(Assignment::create)
@@ -21,23 +26,4 @@ public class CleanupOverlap implements Answerable {
         return "" + result;
     }
 
-    private static boolean checkOverlap(Pair left, Pair right) {
-        return (left.start() >= right.start() && left.start() <= right.end()) ||
-            (right.start() >= left.start() && right.start() <= left.end());
-    }
-
-    @Override
-    public int getDay() {
-        return 4;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
-    }
-
-    @Override
-    public int getYear() {
-        return 2022;
-    }
 }

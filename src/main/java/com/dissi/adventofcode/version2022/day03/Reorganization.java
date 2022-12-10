@@ -1,15 +1,15 @@
 package com.dissi.adventofcode.version2022.day03;
 
-import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
-import org.springframework.stereotype.Component;
 
-@Component
-public class Reorganization implements Answerable {
+
+public class Reorganization {
 
     private static final String LOCATION = "/2022/day3/input.txt";
 
+    @SolutionAnnotation(day = 3, section = 1, year = 2022)
     public String getAnswer() throws IOException {
 
         int result = BufferUtils.getInputAsStringList(LOCATION).stream()
@@ -28,18 +28,4 @@ public class Reorganization implements Answerable {
         return "" + result;
     }
 
-    @Override
-    public int getDay() {
-        return 3;
-    }
-
-    @Override
-    public int getSection() {
-        return 1;
-    }
-
-    @Override
-    public int getYear() {
-        return 2022;
-    }
 }

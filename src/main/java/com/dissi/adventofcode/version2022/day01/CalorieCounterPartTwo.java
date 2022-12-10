@@ -1,18 +1,17 @@
 package com.dissi.adventofcode.version2022.day01;
 
-import com.dissi.adventofcode.Answerable;
 import com.dissi.adventofcode.BufferUtils;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class CalorieCounterPartTwo implements Answerable {
+public class CalorieCounterPartTwo {
 
     private static final String LOCATION = "/2022/day1/input.txt";
 
+    @SolutionAnnotation(day = 1, section = 2, year = 2022)
     public String getAnswer() throws IOException {
         String allLines = BufferUtils.getInputAsStringNoJoining(LOCATION);
         List<Integer> allElves = Arrays.stream(allLines.split("\\n\\n"))
@@ -22,18 +21,4 @@ public class CalorieCounterPartTwo implements Answerable {
         return "" + (allElves.get(0) + allElves.get(1) + allElves.get(2));
     }
 
-    @Override
-    public int getDay() {
-        return 1;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
-    }
-
-    @Override
-    public int getYear() {
-        return 2022;
-    }
 }

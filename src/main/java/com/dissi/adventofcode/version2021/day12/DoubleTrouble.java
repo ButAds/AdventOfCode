@@ -3,19 +3,19 @@ package com.dissi.adventofcode.version2021.day12;
 import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 import static com.dissi.adventofcode.version2021.day12.PathingBuilder.countPaths;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import org.springframework.stereotype.Component;
 
-@Component
-public class DoubleTrouble implements Answerable {
+
+public class DoubleTrouble {
 
     private static final String LOCATION = "/2021/day12/input.txt";
 
-    @Override
+    @SolutionAnnotation(day = 12, section = 2, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> lines = getInputAsStringList(LOCATION);
 
         Map<String, List<String>> connectionMap = PathingBuilder.getConnectionMap(lines);
@@ -23,13 +23,4 @@ public class DoubleTrouble implements Answerable {
         return "" + countPaths(connectionMap, true);
     }
 
-    @Override
-    public int getDay() {
-        return 12;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
-    }
 }

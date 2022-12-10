@@ -2,17 +2,18 @@ package com.dissi.adventofcode.version2021.day02;
 
 import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
-import org.springframework.stereotype.Component;
 
-@Component
-public class AimedDive implements Answerable {
+
+public class AimedDive {
 
     private static final String LOCATION = "/2021/day2/input.txt";
 
+    @SolutionAnnotation(day = 2, section = 2, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> orders = getInputAsStringList(LOCATION);
 
         var horizontal = 0;
@@ -35,15 +36,5 @@ public class AimedDive implements Answerable {
         }
 
         return "" + (horizontal * depth);
-    }
-
-    @Override
-    public int getDay() {
-        return 2;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
     }
 }

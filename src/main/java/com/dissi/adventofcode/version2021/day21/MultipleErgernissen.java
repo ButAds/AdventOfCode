@@ -2,30 +2,20 @@ package com.dissi.adventofcode.version2021.day21;
 
 import static com.dissi.adventofcode.BufferUtils.getInputAsStringList;
 
-import com.dissi.adventofcode.Answerable;
+import com.dissi.adventofcode.SolutionAnnotation;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.java.Log;
-import org.springframework.stereotype.Component;
 
 @Log
-@Component
-public class MultipleErgernissen implements Answerable {
+
+public class MultipleErgernissen {
 
     private static final String LOCATION = "/2021/day21/input.txt";
 
-    @Override
-    public int getDay() {
-        return 21;
-    }
-
-    @Override
-    public int getSection() {
-        return 2;
-    }
-
-    @Override
+    @SolutionAnnotation(day = 21, section = 2, year = 2021)
     public String getAnswer() throws IOException {
+
         List<String> inputAsStringList = getInputAsStringList(LOCATION);
         Player one = new Player(inputAsStringList.get(0));
         Player two = new Player(inputAsStringList.get(1));
