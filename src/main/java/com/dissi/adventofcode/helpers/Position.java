@@ -31,7 +31,7 @@ public class Position {
     public Position(String line) {
         Matcher matcher = PATTERN.matcher(line);
         if (!matcher.matches()) {
-            throw new RuntimeException("Can not match " + line);
+            throw new IllegalArgumentException("Can not match " + line);
         }
         x = Integer.parseInt(matcher.group(1));
         y = Integer.parseInt(matcher.group(2));
@@ -43,5 +43,27 @@ public class Position {
 
     public Position add(int deltaX, int deltaY) {
         return new Position(x + deltaX, y + deltaY);
+    }
+
+    public Position[] getCardinals() {
+        return new Position[] {
+            Direction.NORTH.translate(this),
+            Direction.SOUTH.translate(this),
+            Direction.EAST.translate(this),
+            Direction.WEST.translate(this),
+        };
+    }
+
+    public Position[] getNeighbours() {
+        return new Position[] {
+            Direction.NORTH.translate(this),
+            Direction.SOUTH.translate(this),
+            Direction.EAST.translate(this),
+            Direction.WEST.translate(this),
+            Direction.NORTHEAST.translate(this),
+            Direction.NORTHWEST.translate(this),
+            Direction.SOUTHEAST.translate(this),
+            Direction.SOUTHWEST.translate(this),
+        };
     }
 }
