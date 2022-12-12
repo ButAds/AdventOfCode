@@ -2,4 +2,4 @@ config:
   year: 2022
   day: 11
   performance:
-    loops: 1
+    loops: 0

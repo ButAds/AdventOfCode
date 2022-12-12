@@ -1,5 +1,6 @@
 package com.dissi.adventofcode;
 
+import jakarta.annotation.PostConstruct;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
@@ -9,7 +10,6 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.reflections.Reflections;
