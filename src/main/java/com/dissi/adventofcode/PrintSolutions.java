@@ -63,12 +63,11 @@ public class PrintSolutions {
                     method.invoke(implementor);
                 }
                 Instant end = Instant.now();
-                log.info(String.format("[%s] Day [%s] Section [%s] - took [%sms] - Answer [%s]",
+                log.info(String.format("[%s] Day [%s] Section [%s] - took [%s] - Answer [%s]",
                     details.year(),
                     details.day(),
                     details.section(),
-                    new DecimalFormat("###.######").format(
-                        Duration.between(start, end).dividedBy(performanceLoopCount).toNanos() / 1_000_000F),
+                    getTimeFormat(Duration.between(start, end).dividedBy(performanceLoopCount)),
                     method.invoke(implementor)));
 
             } else {
@@ -86,6 +85,18 @@ public class PrintSolutions {
                 details.section(),
                 e.getMessage()));
             e.printStackTrace();
+        }
+    }
+
+    private String getTimeFormat(Duration duration) {
+        long timeInNanos = duration.toNanos();
+        DecimalFormat format = new DecimalFormat("###.######");
+        if (timeInNanos < 1000) {
+            return format.format(timeInNanos) + " ns";
+        } else if (timeInNanos < 1000_000) {
+            return format.format(timeInNanos / 1000d) + " µs";
+        } else {
+            return format.format(timeInNanos / 1_000_000d) + " ms";
         }
     }
 

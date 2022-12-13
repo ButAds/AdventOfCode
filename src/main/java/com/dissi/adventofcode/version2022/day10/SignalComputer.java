@@ -17,7 +17,6 @@ public class SignalComputer {
 
     @SolutionAnnotation(day = 10, section = 1, year = 2022)
     public int section2() {
-
         return ((20 * signal.get(19))
             + (60 * signal.get(59))
             + (100 * signal.get(99))

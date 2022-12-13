@@ -22,7 +22,7 @@ public class MonkeyBusiness {
 
     @SolutionAnnotation(day = 11, section = 1, year = 2022)
     public int section1() {
-        Monkey[] monkeys = Arrays.stream(data).map(Monkey::new)
+        Monkey[] monkeys = Arrays.stream(data).parallel().map(Monkey::new)
             .toArray(Monkey[]::new);
         doRounds(20, monkeys, true);
         return Arrays.stream(monkeys).mapToInt(Monkey::getInspections).boxed()
@@ -42,7 +42,7 @@ public class MonkeyBusiness {
 
     @SolutionAnnotation(day = 11, section = 2, year = 2022)
     public long section2() {
-        Monkey[] monkeys = Arrays.stream(data).map(Monkey::new)
+        Monkey[] monkeys = Arrays.stream(data).parallel().map(Monkey::new)
             .toArray(Monkey[]::new);
         int lowest = 1;
         for (final Monkey monkey : monkeys) {
@@ -53,7 +53,7 @@ public class MonkeyBusiness {
         }
 
         doRounds(10000, monkeys, false);
-        return Arrays.stream(monkeys).mapToLong(Monkey::getInspections).boxed()
+        return Arrays.stream(monkeys).parallel().mapToLong(Monkey::getInspections).boxed()
             .sorted(Comparator.reverseOrder()).limit(2).reduce(1L, (a, b) -> a * b);
     }
 

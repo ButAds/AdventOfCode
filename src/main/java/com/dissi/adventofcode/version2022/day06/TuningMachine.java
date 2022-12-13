@@ -9,11 +9,21 @@ import java.io.IOException;
 public class TuningMachine {
 
     private static final String LOCATION = "/2022/day6/input.txt";
+    private final String data;
+
+    public TuningMachine() throws IOException {
+        data = BufferUtils.getInputAsStringNoJoining(LOCATION);
+    }
 
     @SolutionAnnotation(day = 6, section = 1, year = 2022)
-    public String getAnswer() throws IOException {
-        String data = BufferUtils.getInputAsStringNoJoining(LOCATION);
+    public String getAnswer() {
         int markerPosition = getTunePosition(data, 4);
+        return "" + markerPosition;
+    }
+
+    @SolutionAnnotation(day = 6, section = 2, year = 2022)
+    public String getTuneFourteen() {
+        int markerPosition = getTunePosition(data, 14);
         return "" + markerPosition;
     }
 }
