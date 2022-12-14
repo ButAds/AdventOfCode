@@ -15,7 +15,6 @@ public enum Direction {
     public static final Direction[] DIAGONAL = new Direction[] {NORTH, EAST, SOUTH, WEST, NORTHEAST, NORTHWEST,
         SOUTHWEST, SOUTHEAST};
 
-
     final int dx;
     final int dy;
 

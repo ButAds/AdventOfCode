@@ -27,8 +27,11 @@ public class PrintSolutions {
     private Map<SolutionAnnotation, Method> solutions;
     private Map<SolutionAnnotation, Object> initializedObjects;
 
-    @Value("${config.performance.loops:1}")
+    @Value("${config.performance.maxLoops:1}")
     private int performanceLoopCount;
+
+    @Value("${config.performance.maxTime:1}")
+    private long maxTimePerMethod;
 
     @Value("${config.year:-1}")
     private int whatYear;
@@ -59,16 +62,27 @@ public class PrintSolutions {
         try {
             if (performanceLoopCount > 0) {
                 Instant start = Instant.now();
+                long timeInNano = maxTimePerMethod * 1_000_000;
+                long nanosStart = System.nanoTime();
+                int actualLoopCount = 0;
                 for (int i = 0; i < performanceLoopCount; i++) {
                     method.invoke(implementor);
+                    actualLoopCount++;
+                    if (System.nanoTime() - nanosStart > timeInNano) {
+                        break;
+                    }
+
                 }
                 Instant end = Instant.now();
-                log.info(String.format("[%s] Day [%s] Section [%s] - took [%s] - Answer [%s]",
-                    details.year(),
-                    details.day(),
-                    details.section(),
-                    getTimeFormat(Duration.between(start, end).dividedBy(performanceLoopCount)),
-                    method.invoke(implementor)));
+                log.info(
+                    String.format("[%s] Day [%s] Section [%s] - took [%s] Loops [%s] Total time [%s] - Answer [%s]",
+                        details.year(),
+                        leadWithSpaces(String.valueOf(details.day()), 2),
+                        details.section(),
+                        leadWithSpaces(getTimeFormat(Duration.between(start, end).dividedBy(actualLoopCount)), 10),
+                        leadWithSpaces(String.valueOf(actualLoopCount), String.valueOf(performanceLoopCount).length()),
+                        leadWithSpaces(getTimeFormat(Duration.between(start, end)), 10),
+                        method.invoke(implementor)));
 
             } else {
                 log.info(String.format("[%s] Day [%s] Section [%s] - Answer [%s]",
@@ -88,15 +102,23 @@ public class PrintSolutions {
         }
     }
 
+    @SuppressWarnings("squid:S3457")
+    public static String leadWithSpaces(String value, int paddingLength) {
+        return String.format("%1$" + paddingLength + "s", value);
+    }
+
     private String getTimeFormat(Duration duration) {
         long timeInNanos = duration.toNanos();
-        DecimalFormat format = new DecimalFormat("###.######");
+        DecimalFormat format = new DecimalFormat("###.000");
+
         if (timeInNanos < 1000) {
-            return format.format(timeInNanos) + " ns";
+            return format.format(timeInNanos) + "ns";
         } else if (timeInNanos < 1000_000) {
-            return format.format(timeInNanos / 1000d) + " µs";
+            return format.format(timeInNanos / 1000d) + "µs";
+        } else if (timeInNanos < 1_000_000_000) {
+            return format.format(timeInNanos / 1_000_000d) + "ms";
         } else {
-            return format.format(timeInNanos / 1_000_000d) + " ms";
+            return format.format(timeInNanos / 1_000_000_000d) + " s";
         }
     }
 

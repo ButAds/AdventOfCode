@@ -25,6 +25,11 @@ public class Position {
         this.y = y;
     }
 
+    public Position(Position pos) {
+        this.x = pos.x;
+        this.y = pos.y;
+    }
+
     /**
      * Line looking like x,y
      */
