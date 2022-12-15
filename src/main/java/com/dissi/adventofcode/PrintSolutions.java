@@ -65,8 +65,9 @@ public class PrintSolutions {
                 long timeInNano = maxTimePerMethod * 1_000_000;
                 long nanosStart = System.nanoTime();
                 int actualLoopCount = 0;
+                Object result = null;
                 for (int i = 0; i < performanceLoopCount; i++) {
-                    method.invoke(implementor);
+                    result = method.invoke(implementor);
                     actualLoopCount++;
                     if (System.nanoTime() - nanosStart > timeInNano) {
                         break;
@@ -75,14 +76,14 @@ public class PrintSolutions {
                 }
                 Instant end = Instant.now();
                 log.info(
-                    String.format("[%s] Day [%s] Section [%s] - took [%s] Loops [%s] Total time [%s] - Answer [%s]",
+                    String.format("[%s:%s:%s] CalcTime [%s] Times calculated [%s] Time spent [%s] - Answer [%s]",
                         details.year(),
                         leadWithSpaces(String.valueOf(details.day()), 2),
                         details.section(),
                         leadWithSpaces(getTimeFormat(Duration.between(start, end).dividedBy(actualLoopCount)), 10),
                         leadWithSpaces(String.valueOf(actualLoopCount), String.valueOf(performanceLoopCount).length()),
                         leadWithSpaces(getTimeFormat(Duration.between(start, end)), 10),
-                        method.invoke(implementor)));
+                        result));
 
             } else {
                 log.info(String.format("[%s] Day [%s] Section [%s] - Answer [%s]",
