@@ -4,14 +4,15 @@ import com.dissi.adventofcode.BufferUtils;
 import com.dissi.adventofcode.SolutionAnnotation;
 import com.dissi.adventofcode.helpers.Position;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.OptionalInt;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 public class SavingPrivateBeacon {
@@ -44,24 +45,23 @@ public class SavingPrivateBeacon {
             return Collections.emptyList();
         }
 
-        noBeaconLocations.sort(Comparator.comparingInt(Position::getX));
-        List<Position> newRanges = new ArrayList<>();
+        LinkedList<Position> newRanges = new LinkedList<>();
         newRanges.add(noBeaconLocations.get(0));
         for (int i = 1; i < noBeaconLocations.size(); i++) {
             Position range = noBeaconLocations.get(i);
-            Position end = newRanges.get(newRanges.size() - 1);
+            Position end = newRanges.getLast();
 
             if (range.getY() >= end.getX() && range.getY() <= end.getY()) {
-                newRanges.get(newRanges.size() - 1).setX(Math.min(range.getX(), end.getX()));
+                end.setX(Math.min(range.getX(), end.getX()));
             }
 
             if (range.getX() >= end.getX() && range.getX() <= end.getY()) {
-                newRanges.get(newRanges.size() - 1).setY(Math.max(range.getY(), end.getY()));
+                end.setY(Math.max(range.getY(), end.getY()));
             }
 
             if (!(range.getX() >= end.getX() && range.getX() <= end.getY()) && !(range.getY() >= end.getX()
                 && range.getY() <= end.getY())) {
-                newRanges.add(0, range);
+                newRanges.addFirst(range);
             }
         }
         return newRanges;
@@ -78,7 +78,8 @@ public class SavingPrivateBeacon {
                     return null;
                 }
             }).filter(Objects::nonNull)
-            .collect(Collectors.toList());
+            .sorted(Comparator.comparingInt(Position::getX))
+            .toList();
     }
 
     private record Row(int y, List<Position> positions) {
@@ -87,19 +88,22 @@ public class SavingPrivateBeacon {
 
     @SolutionAnnotation(day = 15, section = 2, year = 2022)
     public long findTuningFrequency() {
+        final AtomicInteger value = new AtomicInteger();
         final Row item = IntStream.range(0, 4000000).parallel()
             .mapToObj(y -> new Row(y, merge(noBeaconRanges(sensorAndBeacon, y))))
             .filter(row -> row.positions.size() > 1)
-            .filter(row -> IntStream.range(0, 4000000).anyMatch(x -> row.positions.stream()
-                .noneMatch(c -> x >= c.getX() && x <= c.getY())))
+            .filter(row -> {
+                OptionalInt first = IntStream.range(0, 4000000).parallel()
+                    .filter(x -> row.positions.stream().noneMatch(c -> x >= c.getX() && x <= c.getY()))
+                    .findFirst();
+                if (first.isPresent()) {
+                    value.set(first.getAsInt());
+                }
+                return first.isPresent();
+            })
             .findFirst().orElseThrow();
 
-        int value = IntStream.range(0, 4000000)
-            .filter(x ->
-                item.positions.stream()
-                    .noneMatch(c -> x >= c.getX() && x <= c.getY()))
-            .findFirst().orElseThrow();
-        return value * 4000000L + item.y;
+        return value.get() * 4000000L + item.y;
 
     }
 }
