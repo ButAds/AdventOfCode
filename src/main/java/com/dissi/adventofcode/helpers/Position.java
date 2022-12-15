@@ -13,8 +13,8 @@ public class Position {
 
     private static final Pattern PATTERN = Pattern.compile("(\\d+),(\\d+)");
 
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
 
     public Position() {
         this(0, 0);
@@ -70,5 +70,17 @@ public class Position {
             Direction.SOUTHEAST.translate(this),
             Direction.SOUTHWEST.translate(this),
         };
+    }
+
+    public void setX(int newX) {
+        this.x = newX;
+    }
+
+    public void setY(int newY) {
+        this.y = newY;
+    }
+
+    public int distanceTo(Position other) {
+        return Math.abs(x - other.x) + Math.abs(y - other.y);
     }
 }
