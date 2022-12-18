@@ -31,6 +31,7 @@ public class Position3D {
         if (!matcher.matches()) {
             throw new RuntimeException("Can not match " + line);
         }
+
         x = Integer.parseInt(matcher.group(1));
         y = Integer.parseInt(matcher.group(2));
         z = Integer.parseInt(matcher.group(3));
@@ -42,22 +43,21 @@ public class Position3D {
 
     public Position3D translate(int translateX, int translateY, int translateZ) {
         return new Position3D(this.x + translateX, this.y + translateY, this.z + translateZ);
-
     }
 
     public Position3D[] createNeighbours() {
         Position3D[] positions = new Position3D[6];
-        //top
+        // top
         positions[0] = new Position3D(this.x, y, z + 1);
         // down
         positions[1] = new Position3D(this.x, y, z - 1);
-        //left
+        // left
         positions[2] = new Position3D(x, y - 1, z);
         // right
         positions[3] = new Position3D(x, y + 1, z);
-        //front
+        // front
         positions[4] = new Position3D(x + 1, y, z);
-        //center
+        // center
         positions[5] = new Position3D(x - 1, y, z);
         return positions;
     }
