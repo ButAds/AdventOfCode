@@ -16,21 +16,21 @@ public class Coordinates {
     }
 
     public int sizeX() {
-        return coords.stream().mapToInt(Position::getX).max().getAsInt() + Math.abs(coords.stream().mapToInt(
-            Position::getX).min().getAsInt());
+        return coords.stream().mapToInt(d -> (int)d.getX()).max().getAsInt() + Math.abs(coords.stream().mapToInt(
+            d -> (int)d.getX()).min().getAsInt());
     }
 
     public int sizeY() {
-        return coords.stream().mapToInt(Position::getY).max().getAsInt() + Math.abs(coords.stream().mapToInt(
-            Position::getY).min().getAsInt());
+        return coords.stream().mapToInt(d -> (int)d.getY()).max().getAsInt() + Math.abs(coords.stream().mapToInt(
+            d -> (int)d.getY()).min().getAsInt());
     }
 
     public int minX() {
-        return coords.stream().mapToInt(Position::getX).min().getAsInt();
+        return coords.stream().mapToInt(d -> (int)d.getX()).min().getAsInt();
     }
 
     public int minY() {
-        return coords.stream().mapToInt(Position::getY).min().getAsInt();
+        return coords.stream().mapToInt(d -> (int)d.getY()).min().getAsInt();
     }
 
     public Set<Position> getCoordinates() {

@@ -1,6 +1,6 @@
 config:
   year: 2022
-  day: 15
+  day: 18
   performance:
-    maxLoops: 1000
+    maxLoops: 0
     maxTime: 10_000

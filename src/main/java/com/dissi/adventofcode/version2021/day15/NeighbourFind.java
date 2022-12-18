@@ -41,10 +41,10 @@ public class NeighbourFind {
                         Position toCheck = dir.translate(new Position(currX, currY));
                         if (toCheck.getY() >= 0 && toCheck.getY() < minrisk.length && toCheck.getX() >= 0
                             && toCheck.getX() < minrisk[currY].length) {
-                            int calculatedRisk = currentRisk + calcRisk(toCheck.getX(), toCheck.getY());
-                            if (minrisk[toCheck.getY()][toCheck.getX()] > calculatedRisk) {
+                            int calculatedRisk = currentRisk + calcRisk((int)toCheck.getX(), (int)toCheck.getY());
+                            if (minrisk[(int)toCheck.getY()][(int)toCheck.getX()] > calculatedRisk) {
                                 done = false;
-                                minrisk[toCheck.getY()][toCheck.getX()] = calculatedRisk;
+                                minrisk[(int)toCheck.getY()][(int)toCheck.getX()] = calculatedRisk;
                             }
                         }
                     }

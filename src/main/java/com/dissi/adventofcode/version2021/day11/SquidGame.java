@@ -47,7 +47,7 @@ public class SquidGame {
         }
 
         // reset counter for flashes.
-        locations.forEach(loc -> grid[loc.getY()][loc.getX()] = 0);
+        locations.forEach(loc -> grid[(int)loc.getY()][(int)loc.getX()] = 0);
         day++;
         flashes += locations.size();
     }
@@ -57,13 +57,13 @@ public class SquidGame {
             return;
         }
         locations.add(location);
-        grid[location.getY()][location.getX()] = 0;
+        grid[(int)location.getY()][(int)location.getX()] = 0;
         // neighbours
         Arrays.stream(Direction.DIAGONAL).map(dir -> dir.translate(location))
             .filter(this::validLocation)
             .forEach(check -> {
-                grid[check.getY()][check.getX()]++;
-                if (grid[check.getY()][check.getX()] > 9) {
+                grid[(int)check.getY()][(int)check.getX()]++;
+                if (grid[(int)check.getY()][(int)check.getX()] > 9) {
                     doFlash(locations, check);
                 }
             });

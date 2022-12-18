@@ -52,13 +52,13 @@ public class SandDungeon {
     public int dumpingTime() {
         HashSet<Position> solids = new HashSet<>(lines);
 
-        int lowestY = solids.stream().map(Position::getX).max(Integer::compare).orElse(Integer.MIN_VALUE);
+        long lowestY = solids.stream().map(Position::getX).max(Long::compare).orElse(Long.MIN_VALUE);
 
         Position source = new Position(500, 0);
         return getAmountOfSand(source, lowestY, solids);
     }
 
-    private int getAmountOfSand(Position origin, int lowestY, HashSet<Position> floorMap) {
+    private int getAmountOfSand(Position origin, long lowestY, HashSet<Position> floorMap) {
         Position sandPosition = new Position(origin);
         int sandies = 0;
         do {
@@ -83,8 +83,8 @@ public class SandDungeon {
     public int toSafety() {
         HashSet<Position> floorMap = new HashSet<>(lines);
 
-        int lowestY = floorMap.stream().map(Position::getY).max(Integer::compare).orElse(Integer.MIN_VALUE);
-        for (int x = 500 - (2 * lowestY); x <= 500 + (2 * lowestY); x++) {
+        long lowestY = floorMap.stream().map(Position::getY).max(Long::compare).orElse(Long.MIN_VALUE);
+        for (long x = 500 - (2 * lowestY); x <= 500 + (2 * lowestY); x++) {
             floorMap.add(new Position(x, lowestY + 2));
         }
         Position source = new Position(500, 0);

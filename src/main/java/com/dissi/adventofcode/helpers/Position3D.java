@@ -44,4 +44,25 @@ public class Position3D {
         return new Position3D(this.x + translateX, this.y + translateY, this.z + translateZ);
 
     }
+
+    public Position3D[] createNeighbours() {
+        Position3D[] positions = new Position3D[6];
+        //top
+        positions[0] = new Position3D(this.x, y, z + 1);
+        // down
+        positions[1] = new Position3D(this.x, y, z - 1);
+        //left
+        positions[2] = new Position3D(x, y - 1, z);
+        // right
+        positions[3] = new Position3D(x, y + 1, z);
+        //front
+        positions[4] = new Position3D(x + 1, y, z);
+        //center
+        positions[5] = new Position3D(x - 1, y, z);
+        return positions;
+    }
+
+    public int calculateDistance(Position3D o) {
+        return Math.abs(o.x - x) + Math.abs(o.y - y) + Math.abs(o.z - z);
+    }
 }

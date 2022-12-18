@@ -32,11 +32,11 @@ public class Paper {
     private void addPoint(String line) {
         Position position = new Position(line);
         if (position.getX() > xSize) {
-            xSize = position.getX();
+            xSize = (int)position.getX();
         }
 
         if (position.getY() > ySize) {
-            ySize = position.getY();
+            ySize = (int)position.getY();
         }
 
         positions.add(position);
@@ -67,7 +67,7 @@ public class Paper {
                 if (pos.getX() < foldOn) {
                     newPositions.add(pos);
                 } else {
-                    int distance = pos.getX() - foldOn;
+                    int distance = (int)pos.getX() - foldOn;
                     int newX = foldOn - distance;
                     newPositions.add(new Position(newX, pos.getY()));
                 }
@@ -78,7 +78,7 @@ public class Paper {
                 if (pos.getY() < foldOn) {
                     newPositions.add(pos);
                 } else {
-                    int distance = pos.getY() - foldOn;
+                    int distance = (int)pos.getY() - foldOn;
                     int newY = foldOn - distance;
                     newPositions.add(new Position(pos.getX(), newY));
                 }

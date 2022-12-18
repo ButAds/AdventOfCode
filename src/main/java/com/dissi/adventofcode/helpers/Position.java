@@ -13,14 +13,14 @@ public class Position {
 
     private static final Pattern PATTERN = Pattern.compile("(\\d+),(\\d+)");
 
-    private int x;
-    private int y;
+    private long x;
+    private long y;
 
     public Position() {
         this(0, 0);
     }
 
-    public Position(int x, int y) {
+    public Position(long x, long y) {
         this.x = x;
         this.y = y;
     }
@@ -50,6 +50,11 @@ public class Position {
         return new Position(x + deltaX, y + deltaY);
     }
 
+    public Position add(long deltaX, long deltaY) {
+        return new Position(x + deltaX, y + deltaY);
+    }
+
+
     public Position[] getCardinals() {
         return new Position[] {
             Direction.NORTH.translate(this),
@@ -72,15 +77,15 @@ public class Position {
         };
     }
 
-    public void setX(int newX) {
+    public void setX(long newX) {
         this.x = newX;
     }
 
-    public void setY(int newY) {
+    public void setY(long newY) {
         this.y = newY;
     }
 
-    public int distanceTo(Position other) {
+    public long distanceTo(Position other) {
         return Math.abs(x - other.x) + Math.abs(y - other.y);
     }
 }

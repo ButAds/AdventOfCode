@@ -34,7 +34,7 @@ public class SavingPrivateBeacon {
     }
 
     @SolutionAnnotation(day = 15, section = 1, year = 2022)
-    public int beaconSensors() {
+    public long beaconSensors() {
         List<Position> noBeaconLocations = noBeaconRanges(sensorAndBeacon, 2000000);
         List<Position> noFound = merge(noBeaconLocations);
         return noFound.get(0).getY() - noFound.get(0).getX();
@@ -70,15 +70,15 @@ public class SavingPrivateBeacon {
     public List<Position> noBeaconRanges(Map<Position, Position> map, int y) {
         return map.keySet().stream()
             .map(c -> {
-                int dist = c.distanceTo(map.get(c));
-                int xRange = dist - Math.abs(c.getY() - y);
+                long dist = c.distanceTo(map.get(c));
+                long xRange = dist - Math.abs(c.getY() - y);
                 if (xRange > 0) {
                     return new Position(c.getX() - xRange, c.getX() + xRange);
                 } else {
                     return null;
                 }
             }).filter(Objects::nonNull)
-            .sorted(Comparator.comparingInt(Position::getX))
+            .sorted(Comparator.comparingLong(Position::getX))
             .toList();
     }
 

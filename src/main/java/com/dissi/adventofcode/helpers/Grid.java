@@ -12,7 +12,7 @@ public class Grid<T> {
     }
 
     public void set(Position e, T c) {
-        memGrid[e.getY()][e.getX()] = c;
+        memGrid[(int)e.getY()][(int)e.getX()] = c;
     }
 
     public int sizeX() {
@@ -26,8 +26,8 @@ public class Grid<T> {
     public T at(Position p, T defaultResult) {
         if (p.getX() >= 0 && p.getX() < memGrid[0].length &&
             p.getY() >= 0 && p.getY() < memGrid.length &&
-            memGrid[p.getY()][p.getX()] != null) {
-            return memGrid[p.getY()][p.getX()];
+            memGrid[(int)p.getY()][(int)p.getX()] != null) {
+            return memGrid[(int)p.getY()][(int)p.getX()];
         }
 
         return defaultResult;

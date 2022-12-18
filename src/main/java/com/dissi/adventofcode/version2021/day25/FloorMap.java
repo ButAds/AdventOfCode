@@ -52,10 +52,10 @@ public class FloorMap {
 
     private Position getNext(Position current, int maxX, int maxY, char direction) {
         if (direction == '>') {
-            int nX = (current.getX() + 1 < maxX) ? current.getX() + 1 : 0;
+            long nX = (current.getX() + 1 < maxX) ? current.getX() + 1 : 0;
             return new Position(nX, current.getY());
         }
-        int nY = (current.getY() + 1 < maxY) ? current.getY() + 1 : 0;
+        long nY = (current.getY() + 1 < maxY) ? current.getY() + 1 : 0;
         return new Position(current.getX(), nY);
     }
 }
