@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -99,7 +100,8 @@ public class PrintSolutions {
                 details.day(),
                 details.section(),
                 e.getMessage()));
-            e.printStackTrace();
+            log.log(Level.SEVERE, e.getMessage(), e);
+
         }
     }
 
@@ -125,6 +127,8 @@ public class PrintSolutions {
 
     @PostConstruct
     private void doPrint() {
+        log.info(String.format("Starting year %s simulation towards day %s", whatYear, fromDay));
+
         Instant start = Instant.now();
         loadMethods();
         solutions.entrySet().stream()
