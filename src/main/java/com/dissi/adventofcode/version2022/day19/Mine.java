@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Mine {
@@ -37,7 +36,7 @@ public class Mine {
 
         IntStream solutionStream = IntStream.range(0, toCalculateFor.size()).parallel().map(i -> {
             int result = toCalculateFor.get(i)
-                .calculate(minutes, new int[] {1, 0, 0, 0}, new int[4], new HashMap<>(), 0);
+                .calculate(minutes, new int[] {1, 0, 0, 0}, new int[4], new HashMap<>(4662377), 0);
             if (sumResult) {
                 return (i + 1) * result;
             }
@@ -74,12 +73,7 @@ public class Mine {
 
         public int calculate(int timeRemaining, int[] possibleRobots, int[] currentResources,
             Map<String, Integer> seen, int currentMax) {
-            String uniqueKey =
-                timeRemaining
-                    + "-"
-                    + Arrays.stream(possibleRobots).mapToObj(String::valueOf).collect(Collectors.joining("-"))
-                    + "-"
-                    + Arrays.stream(currentResources).mapToObj(String::valueOf).collect(Collectors.joining("-"));
+            String uniqueKey = toCacheKey(timeRemaining, possibleRobots, currentResources);
 
             if (seen.containsKey(uniqueKey)) {
                 return seen.get(uniqueKey);
@@ -113,6 +107,18 @@ public class Mine {
             }
             seen.put(uniqueKey, answer);
             return answer;
+        }
+
+        private String toCacheKey(int timeRemaining, int[] possibleRobots, int[] currentResources) {
+            return timeRemaining
+                + "-" + possibleRobots[ORE]
+                + "-" + possibleRobots[CLAY]
+                + "-" + possibleRobots[OBSIDIAN]
+                + "-" + possibleRobots[GEODE]
+                + "-" + currentResources[ORE]
+                + "-" + currentResources[CLAY]
+                + "-" + currentResources[OBSIDIAN]
+                + "-" + currentResources[GEODE];
         }
 
         private void createPossibilities(int timeRemaining, List<int[]> robots, int[] possibleRobots,
