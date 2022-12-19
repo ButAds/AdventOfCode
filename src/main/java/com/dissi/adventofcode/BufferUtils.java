@@ -40,6 +40,18 @@ public class BufferUtils {
         }
     }
 
+    public static List<String> getInputAsStringList(int year, int day, boolean example) {
+        try {
+            return getInputAsStringList(format(year, day, example));
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Does not exist: " + format(year, day, example));
+        }
+    }
+
+    private static String format(int year, int day, boolean example) {
+        return String.format("/%s/day%s/%s.txt", year, day, example ? "example" : "input");
+    }
+
     public static List<String> getInputAsStringList(String location) throws IOException {
         var br = getInputAsStream(location);
         List<String> allItems = new ArrayList<>();
