@@ -63,6 +63,14 @@ public class BufferUtils {
         return allItems;
     }
 
+    public static List<Integer> getInputAsIntList(int year, int day, boolean example) {
+        try {
+            return getInputAsIntList(format(year, day, example));
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Does not exist: " + format(year, day, example));
+        }
+    }
+
     public static List<Integer> getInputAsIntList(String location) throws IOException {
         ArrayList<Integer> items = new ArrayList<>();
         var reader = getInputAsStream(location);
