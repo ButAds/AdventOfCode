@@ -2,10 +2,8 @@ package com.dissi.adventofcode.helpers;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class BigGrid<T> {
 
@@ -18,10 +16,6 @@ public class BigGrid<T> {
                 grid.put(new Position(j, i), g[i][j]);
             }
         }
-    }
-
-    public BigGrid(BigGrid<T> grid) {
-        this.grid = new HashMap<>(grid.grid);
     }
 
     public BigGrid(Map<Position, T> grid) {
@@ -56,10 +50,6 @@ public class BigGrid<T> {
         this.grid.putAll(s.grid);
     }
 
-    public Stream<Position> streamPositions() {
-        return grid.keySet().stream();
-    }
-
     public Set<Position> positions() {
         return grid.keySet();
     }
@@ -87,13 +77,5 @@ public class BigGrid<T> {
 
     public boolean has(Position pos) {
         return this.grid.containsKey(pos);
-    }
-
-    public Stream<Map.Entry<Position, T>> streamEntries() {
-        return this.grid.entrySet().stream();
-    }
-
-    public Set<Entry<Position, T>> entries() {
-        return this.grid.entrySet();
     }
 }
