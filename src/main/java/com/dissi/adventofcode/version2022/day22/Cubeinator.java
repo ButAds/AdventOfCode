@@ -1,4 +1,4 @@
-package com.dissi.adventofcode.version2022.day22.day21;
+package com.dissi.adventofcode.version2022.day22;
 
 import static java.util.stream.Collectors.toList;
 
