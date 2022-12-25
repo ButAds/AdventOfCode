@@ -54,6 +54,9 @@ public class Position {
         return new Position(x + deltaX, y + deltaY);
     }
 
+    public Position add(Position direction) {
+        return this.add(direction.x, direction.y);
+    }
 
     public Position[] getCardinals() {
         return new Position[] {

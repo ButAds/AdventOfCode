@@ -26,10 +26,6 @@ import java.util.Set;
 
 public class Scatter {
 
-    private final List<String> data;
-    private Map<Position, List<Position>> proposals;
-    private LinkedList<Direction> directions;
-    private Set<Position> elves;
     private static final EnumMap<Direction, Direction[]> TO_CHECK;
 
     static {
@@ -39,6 +35,11 @@ public class Scatter {
         TO_CHECK.put(WEST, new Direction[] {NORTHWEST, WEST, SOUTHWEST});
         TO_CHECK.put(EAST, new Direction[] {NORTHEAST, EAST, SOUTHEAST});
     }
+
+    private final List<String> data;
+    private Map<Position, List<Position>> proposals;
+    private LinkedList<Direction> directions;
+    private Set<Position> elves;
 
     public Scatter() {
         this.data = BufferUtils.getInputAsStringList(2022, 23, false);
@@ -187,12 +188,14 @@ public class Scatter {
 
         long maxX = Integer.MIN_VALUE;
         long maxY = Integer.MIN_VALUE;
+
         for (Position elf : elves) {
             minX = Math.min(minX, elf.getX());
             minY = Math.min(minY, elf.getY());
             maxX = Math.max(maxX, elf.getX());
             maxY = Math.max(maxY, elf.getY());
         }
+
         return (maxX - minX + 1) * (maxY - minY + 1) - elves.size();
     }
 }
