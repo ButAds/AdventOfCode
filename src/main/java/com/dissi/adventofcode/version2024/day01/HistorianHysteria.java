@@ -9,10 +9,9 @@ import java.util.List;
 
 public class HistorianHysteria {
 
-    private static final String LOCATION = "/2024/day1/example.txt";
     private final List<String> data;
 
-    public HistorianHysteria() throws IOException {
+    public HistorianHysteria() {
         this.data = BufferUtils.getInputAsStringList(2024, 1, false);
     }
 
