@@ -1,7 +1,7 @@
 package com.dissi.adventofcode.version2022.day13;
 
 import java.util.ArrayList;
-import org.jetbrains.annotations.NotNull;
+
 
 public class NumberList implements Comparable<NumberList> {
 
@@ -9,7 +9,7 @@ public class NumberList implements Comparable<NumberList> {
     private int value = -1;
 
 
-    public static @NotNull NumberList parse(@NotNull String s) {
+    public static NumberList parse(String s) {
         NumberList numbers = new NumberList();
         int index = 1;
         while (index < s.length()) {
@@ -45,7 +45,7 @@ public class NumberList implements Comparable<NumberList> {
     }
 
     @Override
-    public int compareTo(@NotNull NumberList other) {
+    public int compareTo(NumberList other) {
         int compareIndex = 0;
         while (compareIndex < this.sublists.size() || compareIndex < other.sublists.size()) {
             if (this.sublists.size() <= compareIndex) {
