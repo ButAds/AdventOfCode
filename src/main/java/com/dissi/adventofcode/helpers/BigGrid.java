@@ -2,8 +2,10 @@ package com.dissi.adventofcode.helpers;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BigGrid<T> {
 
@@ -78,4 +80,13 @@ public class BigGrid<T> {
     public boolean has(Position pos) {
         return this.grid.containsKey(pos);
     }
+
+    public T getOrDefault(Position pos, T def) {
+        return this.grid.getOrDefault(pos, def);
+    }
+
+    public Stream<Entry<Position, T>> streamPositions() {
+        return this.grid.entrySet().stream();
+    }
+
 }
