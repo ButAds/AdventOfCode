@@ -48,6 +48,14 @@ public class BufferUtils {
         }
     }
 
+    public static String getInputAsString(int year, int day, boolean example) {
+        try {
+            return getInputAsString(format(year, day, example));
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Does not exist: " + format(year, day, example));
+        }
+    }
+
     private static String format(int year, int day, boolean example) {
         return String.format("/%s/day%s/%s.txt", year, day, example ? "example" : "input");
     }
