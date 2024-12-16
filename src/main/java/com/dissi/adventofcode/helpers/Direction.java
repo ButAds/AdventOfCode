@@ -28,4 +28,28 @@ public enum Direction {
     public Position translate(Position location) {
         return new Position(location.getX() + this.dx, location.getY() + this.dy);
     }
+
+    public Direction turnSquare() {
+        return switch (this) {
+            case SOUTH -> WEST;
+            case WEST -> NORTH;
+            case NORTH -> EAST;
+            case EAST -> SOUTH;
+            default -> throw new RuntimeException("Direction not recognized");
+        };
+    }
+
+    public Direction oneEighty() {
+        return switch (this) {
+            case SOUTH -> NORTH;
+            case WEST -> EAST;
+            case NORTH -> SOUTH;
+            case EAST -> WEST;
+            case SOUTHEAST -> NORTHWEST;
+            case NORTHEAST -> SOUTHWEST;
+            case NORTHWEST -> SOUTHEAST;
+            case SOUTHWEST -> NORTHEAST;
+            default -> throw new RuntimeException("Direction not recognized");
+        };
+    }
 }

@@ -40,6 +40,8 @@ public class PrintSolutions {
     @Value("${config.day:-1}")
     private int fromDay;
 
+    @Value("${config.one:false}")
+    private boolean onlyOneDay;
 
     private void loadMethods() {
         Reflections reflections = new Reflections(new ConfigurationBuilder()
@@ -134,6 +136,8 @@ public class PrintSolutions {
         solutions.entrySet().stream()
             .filter(answerable -> answerable.getKey().day() >= fromDay)
             .filter(answerable -> whatYear == -1 || whatYear == answerable.getKey().year())
+            .filter(answerable -> (answerable.getKey().day() == fromDay && answerable.getKey().year() == whatYear)
+                || !onlyOneDay)
             .sorted(getComparator())
             .forEach(kvp -> print(kvp.getKey(), kvp.getValue(), initializedObjects.get(kvp.getKey())));
 
