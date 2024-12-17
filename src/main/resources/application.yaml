@@ -1,7 +1,7 @@
 config:
   one: true
   year: 2024
-  day: 16
+  day: 17
   performance:
     maxLoops: 1
     maxTime: 120_000
