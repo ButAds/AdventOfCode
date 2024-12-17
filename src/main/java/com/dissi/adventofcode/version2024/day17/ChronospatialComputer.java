@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.OptionalLong;
-import java.util.stream.LongStream;
 
 public class ChronospatialComputer {
 
@@ -30,24 +28,31 @@ public class ChronospatialComputer {
     @SolutionAnnotation(year = 2024, day = 17, section = 2)
     public long loops() {
         initComputer();
-        return findAMatchingOutput(opcodes, opcodes);
+        System.out.printf("opcodes: %s %n", opcodes);
+        return findAMatchingOutput(opcodes, opcodes).stream().mapToLong(value -> value).min().getAsLong();
+
     }
 
-    private long findAMatchingOutput(List<Long> program, List<Long> target) {
-        System.out.printf("Finding A for %s%n", target);
-        long aStart;
+    private List<Long> findAMatchingOutput(List<Long> program, List<Long> target) {
+        List<Long> possibleStarts = new ArrayList<>();
         if (target.size() == 1) {
-            aStart = 0;
+            possibleStarts.add(0L);
         } else {
-            // aStart = findAMatchingOutput(program, target.subList(1, target.size())) * 8L;
-            aStart = findAMatchingOutput(program, target.subList(1, target.size())) << 3L;
+            possibleStarts.addAll(findAMatchingOutput(program, target.subList(1, target.size())));
         }
-        System.out.printf("Start at %s for program %s %n", aStart, target);
-        while (!equalsProgram(runProgram(program, aStart), target)) {
-             aStart++;
+
+        List<Long> possibleStartsResult = new ArrayList<>();
+        for(long possibleStart  : possibleStarts) {
+            long aStart = possibleStart << 3;
+            // only 3 bits, so 8 max
+            for (long toTry = 0b000L; toTry <= 0b111L; toTry++) {
+                long candidate =  aStart | toTry;
+                if (equalsProgram(runProgram(program, candidate), target)) {
+                    possibleStartsResult.add(candidate);
+                }
+            }
         }
-        System.out.printf("Found A[%s] for target %s %n", aStart, target);
-        return aStart;
+        return possibleStartsResult;
     }
 
     private boolean equalsProgram(List<Long> original, List<Long> output) {
